@@ -1,0 +1,81 @@
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+    
+      <!-- Navbar -->
+      <app-navbar></app-navbar>
+    
+      <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  
+        <!-- Brand Logo -->
+      <a href="#" class="brand-link">
+        <span class="brand-text font-weight-light">Jonas </span>
+      </a>
+    
+      <!-- Sidebar menu -->
+      <div class="sidebar">
+        <!-- Sidebar menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a routerLink="#" class="nav-link home-link" (click)="aoClicar('inicio')">
+                <i class="nav-icon fas fa-home"></i>
+                <p>Inicio</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a routerLink="#" class="nav-link" >
+                <i class="nav-icon fas fa-user"></i>
+                <p>Ver</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                <i class="nav-icon fas fa-edit"></i>
+                <p>Serviços</p>
+              </a>
+              <ul class="sub-menu">
+                <li class="nav-item">
+                  <a routerLink="#" class="nav-link" (click)="aoClicar('notas')">
+                    <i class="nav-icon far fa-circle"></i>
+                    <p>Ver Notas</p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="#" class="nav-link" (click)="aoClicar('pagamentos')">
+                      <i class="nav-icon far fa-circle"></i>
+                      <p>Ver Pagamentos</p>
+                    </a>
+                </li>
+                
+              </ul>
+            </li>
+            
+             <!-- Sair link at the bottom -->
+            <li class="nav-item logout-link">
+              <a routerLink="#" class="nav-link" (click)="aoClicar('sair')">
+                <i class="nav-icon fas fa-sign-out-alt"></i>
+                <p>Sair</p>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+    
+      <!-- Content Wrapper -->
+    <app-aluno-inicio *ngIf="inicio"></app-aluno-inicio>
+    <app-nota *ngIf="notas"></app-nota>
+    <app-pagamento *ngIf="pagamentos"></app-pagamento>
+    
+        
+      <!-- Footer -->
+      <footer class="main-footer">
+        <div class="float-right d-none d-sm-inline">
+          Version 1.0
+        </div>
+        <strong>AdminLTE &copy; 2023</strong>
+      </footer>
+    </div>
+  </body>

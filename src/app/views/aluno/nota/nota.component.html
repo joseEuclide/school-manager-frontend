@@ -1,0 +1,144 @@
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Main Content</h1>
+            <p>This is the main content area.</p>
+          </div>
+        </div>
+  
+        <!-- Carousel Section -->
+        <section id="carouselSection">
+          <div class="row">
+            <div class="col-md-12 scrollbar">
+              <div class="container mb-5">
+                <h3>Tabela de Notas Iº Trimestre</h3>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Disciplina</th>
+                        <th>MAC1</th>
+                        <th>NPP1</th>
+                        <th>NPT1</th>
+                        <th>MEDIA Iº TRIMESTRE</th>
+                        
+                        <!-- Adicione mais cabeçalhos conforme necessário -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let nota of notas">
+                        <td>{{ nota.disciplina }}</td>
+                        <td>{{ nota.notaPorDisciplina.mac1 }}</td>
+                        <td>{{ nota.notaPorDisciplina.npp1 }}</td>
+                        <td>{{ nota.notaPorDisciplina.npt1  }}</td>
+                        <td>{{ nota.notaPorDisciplina.notaPrimeiroTrimestre  }}</td>
+                        
+                        <!-- Adicione mais células conforme necessário -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="container mb-5">
+                <h3>Tabela de Notas IIº Trimestre</h3>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Disciplina</th>
+                        <th>MAC2</th>
+                        <th>NPP2</th>
+                        <th>NPT2</th>
+                        <th>MEDIA IIº TRIMESTRE</th>
+                        
+                        <!-- Adicione mais cabeçalhos conforme necessário -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let nota of notas">
+                        <td>{{ nota.disciplina }}</td>
+                        <td>{{ nota.notaPorDisciplina.mac2 }}</td>
+                        <td>{{ nota.notaPorDisciplina.npp2 }}</td>
+                        <td>{{ nota.notaPorDisciplina.npt2  }}</td>
+                        <td>{{ nota.notaPorDisciplina.notaSegundoTrimestre  }}</td>
+                        <td></td>
+                        <!-- Adicione mais células conforme necessário -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="container mb-5">
+                <h3>Tabela de Notas IIIº Trimestre</h3>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Disciplina</th>
+                        <th>MAC3</th>
+                        <th>NPP3</th>
+                        <th>NPT3</th>
+                        <th>MEDIA IIIº TRIMESTRE</th>
+                        
+                        <!-- Adicione mais cabeçalhos conforme necessário -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let nota of notas">
+                        <td>{{ nota.disciplina }}</td>
+                        <td>{{ nota.notaPorDisciplina.mac3 }}</td>
+                        <td>{{ nota.notaPorDisciplina.npp3 }}</td>
+                        <td>{{ nota.notaPorDisciplina.npt3  }}</td>
+                        <td>{{ nota.notaPorDisciplina.notaPrimeiroTrimestre  }}</td>
+                        <td></td>
+                        <td>{{ nota.notaPorDisciplina.mac2 }}</td>
+                        <td>{{ nota.notaPorDisciplina.npp2 }}</td>
+                        <td>{{ nota.notaPorDisciplina.npt2  }}</td>
+                        <td>{{ nota.notaPorDisciplina.notaTerceiroTrimestre  }}</td>
+                        <td></td>
+                        <!-- Adicione mais células conforme necessário -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="container mb-6">
+                <h3>Tabela de Resultado Finais</h3>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Disciplina</th>
+                        <th>Nota Final Da<br> Disciplina</th>
+                        <th>Media do Exame <br> Combinado</th>
+                        <th>Nota Final</th>
+                        
+                        <!-- Adicione mais cabeçalhos conforme necessário -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let nota of notas">
+                        <td>{{ nota.disciplina }}</td>
+                        <td>{{ nota.notaPorDisciplina.nfd }}</td>
+                        <td>{{ nota.notaPorDisciplina.mec }}</td>
+                        <td>{{ nota.notaPorDisciplina.notaFinal  }}</td>
+                        
+                        <!-- Adicione mais células conforme necessário -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>

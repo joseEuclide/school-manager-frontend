@@ -1,0 +1,11 @@
+select.form-control option {
+    font-size: 18px; /* Altere o valor conforme desejado */
+  } 
+
+  @media (max-width: 768px) {
+    /* Reduz a altura máxima em dispositivos móveis */
+    div[style="max-height: 400px; overflow-y: auto;"] {
+      max-height: 200px; /* Ajuste conforme necessário */
+    }
+  }
+  

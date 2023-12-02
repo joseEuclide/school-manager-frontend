@@ -1,0 +1,58 @@
+.card {
+    width: 70%;
+    margin: 0 auto;
+  }
+  .scroll-container {
+    max-height: 400px; /* Defina a altura máxima desejada */
+    overflow-y: auto; /* Adicione a rolagem vertical conforme necessário */
+  }
+  
+
+  /* Restante dos estilos ... */
+  
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .btn {
+    margin-right: 10px;
+  }
+  
+  h2 {
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .custom-card {
+    background-color: #f8f9fa; /* Cor de fundo semelhante ao AdminLTE */
+    color: #000000; /* Cor do texto */
+    border: 1px solid #d3d9df; /* Cor da borda */
+    border-radius: 10px; /* Borda arredondada */
+  }
+  
+  .custom-card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra ao passar o mouse */
+  }
+
+  
+  .button-container {
+    width: 70%;
+    margin: 0 auto;
+  }
+
+  
+  @media (max-width: 768px) {
+    .card {
+      width: 100%;
+    }
+  }
+  

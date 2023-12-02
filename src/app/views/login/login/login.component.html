@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    /* Estilos específicos para esta página */
+    body {
+      background: url('../assets/images/bg-01.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="container">
+        <div class="form-container">
+          <h2>Login</h2>
+          <form>
+            <div class="form-group">
+              <label for="usuario">Usuário:</label>
+              <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Digite seu usuário" [(ngModel)]="usuario">
+            </div>
+            <div class="form-group">
+              <label for="senha">Senha:</label>
+              <input type="password" name="senha" id="senha" class="form-control" placeholder="Digite sua senha" [(ngModel)]="senha">
+            </div>
+            <button type="button" (click)="onSubmit()" class="btn btn-login">Login</button>
+          </form>
+        </div>
+      </div>
+      
+  </div>
+  <script src="caminho/para/seu/script.js"></script> <!-- Caminho para seu arquivo JavaScript -->
+</body>
+</html>

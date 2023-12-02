@@ -1,0 +1,6 @@
+.custom-border {
+    border: 2px solid #3498db; /* Cor da borda azul (substitua pela cor desejada) */
+    border-radius: 10px; /* Borda arredondada (ajuste conforme necessário) */
+    padding: 20px; /* Espaçamento interno para destacar a borda */
+  }
+  

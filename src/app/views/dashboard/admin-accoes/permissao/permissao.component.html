@@ -1,0 +1,77 @@
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+                                                                                 
+          <div class="col-md-12">
+            <h1>Main Content</h1>
+            <p>This is the main content area.</p>
+          </div>
+        </div>
+  
+        <!-- Carousel Section -->
+        <section id="carouselSection">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="container">
+                <h2>Cadastro de Permissão</h2>
+              
+                <form >
+                  <div class="form-group">
+                    <label for="tipoDeProva">Tipo de Prova:</label>
+                    <select class="form-control" [(ngModel)]="permissao.tipoDeProva" id="tipoDeProva" name="tipoDeProva">
+                      <option value="" disabled selected>Selecione o Tipo de Prova</option>
+                      <option value="mac1">MAC 1</option>
+                      <option value="npp1">NPP 1</option>
+                      <option value="npt1">NPT 1</option>
+                      <option value="mac2">MAC 2</option>
+                      <option value="npp2">NPP 2</option>
+                      <option value="npt2">NPT 2</option>
+                      <option value="mac3">MAC 3</option>
+                      <option value="npp3">NPP 3</option>
+                      <option value="npt3">NPT 3</option>
+                      <option value="mec">MEC 1</option>
+                      
+                      <!-- Adicione as opções de turno que desejar -->
+                    </select>
+                  </div>
+              
+                  <div class="form-group">
+                    <label for="eEpocaDeLancamento">Época de Lançamento?</label><br>
+                    <label class="radio-inline">
+                      <input type="radio" name="eEpocaDeLancamento" [(ngModel)]="permissao.eEpocaDeLancamento" [value]="true"> Sim
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="eEpocaDeLancamento" [(ngModel)]="permissao.eEpocaDeLancamento" [value]="false"> Não
+                    </label>
+                  </div><br><br>
+
+                  <div class="form-group">
+                    <label for="status">Autorizar Lancamento de Provas de</label><br>
+                    <label class="radio-inline">
+                      <input type="radio" name="status" [(ngModel)]="status" [value]="false"> todos Professores
+                    </label><br>
+                    <label class="radio-inline">
+                      <input type="radio" name="status" [(ngModel)]="status" [value]="true"> Um Professor(a)
+                    </label>
+                  </div>
+              
+                  <div class="form-group" *ngIf="status">
+                    <label for="idProf">ID do Professor</label>
+                    <input type="number" class="form-control" name="idProf" id="idProf" placeholder="Digite o ID do professor" [(ngModel)]="idProf" required>
+                  </div>
+              
+                  <button (click)="criarPermissao()" type="button" class="btn btn-primary">Enviar</button>
+                </form>
+              </div>
+              
+                    
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+

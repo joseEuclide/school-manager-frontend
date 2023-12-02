@@ -1,0 +1,5 @@
+.scrollbar{
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 90%; /* Ajuste conforme necessário */
+}

@@ -1,0 +1,60 @@
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+                                                                                 
+          <div class="col-md-12">
+            <h1>Main Content</h1>
+            <p>This is the main content area.</p>
+          </div>
+        </div>
+  
+        <!-- Carousel Section -->
+        <section id="carouselSection">
+          <div class="row">
+            <div class="col-md-12">
+                <div class="container mt-5">
+                    <h2>Cadastro de Turma</h2>
+                    <form [formGroup]="turmaForm" (ngSubmit)="onSubmit()">
+                      <div class="form-group" style="width: 70%;">
+                        <label for="nome">Nome da Turma</label>
+                        <input style="font-size: 18px;" type="text" class="form-control" id="nome" formControlName="nome" placeholder="Digite o nome da turma">
+                      </div>
+                      <div class="form-group" style="width: 40%;">
+                        <label for="nivel">Nível</label>
+                        <select class="form-control" id="nivel" formControlName="nivel">
+                          <option value="10">10º Classe</option>
+                          <option value="11">11º Classe</option>
+                          <option value="12">12º Classe</option>
+                          <option value="13">13º Classe</option>
+                          <!-- Adicione outras opções conforme necessário -->
+                        </select>
+                      </div>
+                      <div class="form-group" style="width: 40%;">
+                        <label for="curso" style="font-size: 18px;">Curso</label>
+                        <select class="form-control" id="curso" formControlName="curso">
+                          <option *ngFor="let curso of cursos" [value]="curso.id">{{ curso.nome }}</option>
+                        </select>
+                      </div>
+                      <div class="form-group" style="width: 40%;">
+                        <label for="turno">Turno</label>
+                        <select class="form-control" id="turno" formControlName="turno">
+                          <option value="Manha">Manha</option>
+                          <option value="Tarde">Tarde</option>
+                          <option value="Noite">Noite</option>
+                          <!-- Adicione outras opções conforme necessário -->
+                        </select>
+                      </div>
+                      <button type="submit" class="btn btn-primary" (click)="cadastrarTurma()">Cadastrar Turma</button>
+                    </form>
+                  </div>
+                  
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  

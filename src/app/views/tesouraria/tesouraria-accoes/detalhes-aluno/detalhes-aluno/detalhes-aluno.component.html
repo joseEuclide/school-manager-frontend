@@ -1,0 +1,29 @@
+<!-- src/app/aluno-form/aluno-form.component.html -->
+<div class="container mt-3">
+    <h2>Detalhes do Aluno</h2>
+    <form (ngSubmit)="submitForm()">
+      <!-- Seção 1: Detalhes do Aluno -->
+      <div class="aluno-section">
+        <div class="form-group">
+          <label for="nome">ID:  1</label>
+        </div>
+        <div class="form-group">
+          <label for="matricula">Nome: Jonas</label>
+          </div>
+        <div class="form-group">
+          <label for="curso">Curso: Enfermagem</label>
+        </div>
+      </div>
+  
+      <!-- Seção 2: Pagamento de Propinas -->
+      <div class="pagamento-section">
+        <h2>Pagamento de Propinas</h2>
+        <div class="form-group">
+          <label for="mesesPropina">Pagar Quantos meses:</label>
+          <input type="number" class="form-control" id="mesesPropina" placeholder="Quantidade de Meses" [(ngModel)]="aluno.mesesPropina" name="mesesPropina" required>
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Pagar</button>
+    </form>
+  </div>

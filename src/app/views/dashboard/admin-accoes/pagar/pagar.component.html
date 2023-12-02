@@ -1,0 +1,46 @@
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+                                                                                 
+          <div class="col-md-12">
+            <h1>Main Content</h1>
+            <p>This is the main content area.</p>
+          </div>
+        </div>
+  
+        <!-- Carousel Section -->
+        <section id="carouselSection">
+          <div class="row">
+            <div class="col-md-12">
+                <br><br><br>
+              <div class="container">
+                <h2>Pagar Todos Funcionários</h2>
+              
+                <form >
+                  
+              
+                  <div class="form-group">
+                    <label for="status">Pagar Funcionários?</label><br>
+                    <label class="radio-inline">
+                      <input type="radio" name="status" [(ngModel)]="status" [value]="true"> Sim
+                    </label>
+                    <label class="radio-inline">
+                      <input type="radio" name="status" [(ngModel)]="status" [value]="false"> Não
+                    </label>
+                  </div><br><br>
+
+                  <button (click)="pagarFuncionarios()" type="button" class="btn btn-primary">pagar</button>
+                </form>
+              </div>
+              
+                    
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+

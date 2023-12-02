@@ -1,0 +1,17 @@
+
+  
+  /* Add margin to navbar icons for devices with smaller screens */
+  .navbar-nav .nav-link i {
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
+  /* Add margin to the first navbar icon */
+  .navbar-nav .nav-link:first-child i {
+    margin-left: 10px; /* Adjust the margin as needed */
+  }
+  
+  .navbar-text {
+    margin-right: 15px; /* Adjust the margin as needed */
+  }
+  
+  
+  

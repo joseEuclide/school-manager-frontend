@@ -1,0 +1,135 @@
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+                                                                                 
+          <div class="col-md-12">
+            <h1>Main Content</h1>
+            <p>This is the main content area.</p>
+          </div>
+        </div>
+  
+        <!-- Carousel Section -->
+        <section id="carouselSection">
+          <div class="row">
+            <div class="col-md-12">
+              <div *ngIf="cadastroSucesso" class="alert alert-success">
+                 <span style="text-align:center;color:green"> Professor Cadastrado com sucesso! </span>
+                <button type="button" class="close" (click)="fecharMensagem()">×</button>
+              </div>
+              
+              <div class="container" *ngIf="mostrar1">
+                <div class="row justify-content-center">
+                  <div class="col-md-6" style="margin-top: 10%;">
+                    <h2 class="text-center">Cadastrar o Professor</h2>
+                    <form [formGroup]="profForm2">
+                      <div class="form-group">
+                        <label for="nome" class="font-size-large">Nome do Professor</label>
+                        <input formControlName="nome" type="text" required class="form-control form-control-lg" id="nome" placeholder="Digite o nome do curso">
+                      </div>
+                      <div class="form-group">
+                        <label for="duracao" class="font-size-large">Nº Bilhete</label>
+                        <input formControlName="bi"  type="text" class="form-control form-control-lg" id="duracao" placeholder="Informe o Seu Numero Do Bilhete">
+                      </div>
+                      <button type="button" (click)="cadastrarProf1()" [disabled]="profForm2.get('nome')?.value === '' && profForm2.get('bi')?.value === ''" class="btn btn-primary btn-lg btn-block">Seguinte</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="container mt-5" *ngIf="mostrar2">
+               
+                <div *ngIf="mostrar3" >
+                  <h2>Seleção de Dados Para o Professor</h2>
+                  <p>Quando Selecionar os Dados Abaixo Vai Trazer Todas as Turmas e Disciplinas Para Onde Quer Cadastrar Esse Professor</p>
+                  <form [formGroup]="dadosForm" >
+                    
+                    <div class="row mb-3">
+                       <div class="col-md-6">
+                            <ng-multiselect-dropdown
+                                  [placeholder]="'Selecione Os Cursos'"
+                                  [settings]="dropdownSettings_Curso"
+                                  [data]="cursos"
+                                  [(ngModel)]="selectedItems_Curso"
+                                  (onSelect)="onItemSelect_Curso($event)"
+                                  (onSelectAll)="onSelectAll_Curso($event)"
+                                  (onDeSelect)="onItemDeselect_Curso($event)"
+
+                                > 
+                            </ng-multiselect-dropdown>
+                       </div>
+                       
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <ng-multiselect-dropdown
+                                [placeholder]="'Selecione os Turnos'"
+                                [settings]="dropdownSettings_Turnos"
+                                [data]="dropdownList_Turnos"
+                                [(ngModel)]="selectedItems_Turnos"
+                                (onSelect)="onItemSelect_Turnos($event)"
+                                (onSelectAll)="onSelectAll_Turnos($event)"
+                              >
+                            </ng-multiselect-dropdown>
+                       
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <ng-multiselect-dropdown
+                            [placeholder]="'Selecione os Niveis'"
+                            [settings]="dropdownSettings_Niveis"
+                            [data]="dropdownList_Niveis"
+                            [(ngModel)]="selectedItems_Niveis"
+                            (onSelect)="onItemSelect_Niveis($event)"
+                            (onSelectAll)="onSelectAll_Niveis($event)"
+                          >
+                        </ng-multiselect-dropdown>
+                   </div>
+                    </div>
+
+                   
+                    <button type="button" class="btn btn-primary"  (click)="cadastrarProf2()">Seguinte</button>
+                  </form>
+                </div>
+
+                <div *ngIf="mostrar4">
+                    <div class="container mt-2" *ngIf="mostrarTurmas">
+                      <ng-container *ngFor="let turma of turmas">
+                        <h3 style="text-align: center;">Turma: {{ turma.nome }}</h3>
+                        <ng-multiselect-dropdown class="row mb-3"
+                          [placeholder]="'Selecione As Disciplinas'"
+                          [settings]="dropdownSettings_Niveis"
+                          [data]="turma.disciplinas"
+                          (onSelect)="onItemSelect_Disciplinas($event, turma)"
+                          (onSelectAll)="onSelectAll_Disciplinas($event, turma)"
+                          (onDeSelect)="onDeSelect_Disciplinas($event, turma)"
+                        >
+                        </ng-multiselect-dropdown>
+                      </ng-container>
+                          <button (click)="cadastrarProf3()">Cadastrar Professor</button>
+                         
+                    </div>
+                    <div class="container mt-2" *ngIf="mostrarMensagem">
+                      <p>Não Foi Encontrada Nenhuma Turma Para Esse Seleção de 
+                        Cursos, Niveis e Turnos Para Esse Professor, 
+                        Faca Selecao Correctamente De modos a Encontrar as 
+                        Turmas Existentes Na Escola ou Cadastre Uma Turma Antes
+                       </p>
+                      <button (click)="voltar()">Voltar</button>
+                    </div>
+                    
+                </div>
+              </div>
+              
+              
+              
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <!-- /.content -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </div>
+

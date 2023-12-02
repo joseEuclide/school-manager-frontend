@@ -1,0 +1,98 @@
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+                                                                                 
+          <div class="col-md-12">
+            <h1>Main Content</h1>
+            <p>This is the main content area.</p>
+          </div>
+        </div>
+  
+        <!-- Carousel Section -->
+        <section id="carouselSection">
+          <div class="row">
+            <div class="col-md-12">
+              
+                 <div class="container mt-5">
+                    <h2 class="mb-4">Cadastro de Calendário de Provas</h2>
+                    
+                    <form  style="max-height: 400px; overflow-y: auto;">
+
+
+
+                      <div class="form-group" style="width: 40%;">
+                        <label for="nivel">Nível</label>
+                        <select class="form-control" id="nivel" formControlName="nivel">
+                          <option value="10">10º Classe</option>
+                          <option value="11">11º Classe</option>
+                          <option value="12">12º Classe</option>
+                          <option value="13">13º Classe</option>
+                          <!-- Adicione outras opções conforme necessário -->
+                        </select>
+                      </div>
+                      <div class="form-group" style="width: 40%;">
+                        <label for="curso" style="font-size: 18px;">Curso</label>
+                        <select class="form-control" id="curso" formControlName="curso">
+                          <option *ngFor="let curso of cursos" [value]="curso.id">{{ curso.nome }}</option>
+                        </select>
+                      </div>
+                      <div class="form-group" style="width: 40%;">
+                        <label for="turno">Turno</label>
+                        <select class="form-control" id="turno" formControlName="turno">
+                          <option value="Manha">Manha</option>
+                          <option value="Tarde">Tarde</option>
+                          <option value="Noite">Noite</option>
+                          <!-- Adicione outras opções conforme necessário -->
+                        </select>
+                      </div>
+ 
+                        <div style="max-height: 300px; overflow-y: auto;">
+                        <div *ngFor="let disciplina of disciplinas; let i = index" class="card mb-4">
+                          <div class="card-body">
+                            <div class="form-group mt-2">
+                              <label for="nome{{i}}">Disciplina:</label>
+                              <input type="text" class="form-control" [(ngModel)]="disciplina.nome" id="nome{{i}}" name="nome">
+                            </div>
+                            <div class="form-group mt-2">
+                              <label>Dias da Semana:</label>
+                              <div class="form-check" *ngFor="let dia of diasSemana">
+                                <input type="checkbox" [checked]="isDiaSelecionado(disciplina, dia)" (change)="toggleDiaSelecionado(disciplina, dia)" [value]="dia" class="form-check-input">
+                                <label class="form-check-label" style="margin-left: 20px;">{{ dia }}</label>
+                              </div>
+                            </div>
+                            <div *ngIf="disciplina.nome">
+                              <div *ngFor="let horario of disciplina.horarios; let j = index" class="horario-group">
+                                <hr>
+                                <div class="form-group mt-2">
+                                  <label for="horaInicio{{i}}_{{j}}">Hora de Início:</label>
+                                  <input type="time" class="form-control" [(ngModel)]="horario.horaInicio" id="horaInicio{{i}}_{{j}}" name="horaInicio">
+                                </div>
+                                <div class="form-group mt-2">
+                                  <label for="horaFim{{i}}_{{j}}">Hora de Término:</label>
+                                  <input type="time" class="form-control" [(ngModel)]="horario.horaFim" id="horaFim{{i}}_{{j}}" name="horaFim">
+                                </div>
+                                <div class="form-group mt-2">
+                                  <label for="tempo{{i}}_{{j}}">Tempo da Aula (minutos):</label>
+                                  <input type="number" class="form-control" [(ngModel)]="horario.tempo" id="tempo{{i}}_{{j}}" name="tempo" min="1">
+                                </div>
+                                <button type="button" class="btn btn-danger mt-2" (click)="removerHorario(i, j)">Remover Horário</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <br>
+                      <button type="button" class="btn btn-success" (click)="adicionarDisciplina()">Adicionar Disciplina</button>
+                      <button type="submit" class="btn btn-primary ml-3" (click)="cadastrarCalendarios()">Cadastrar</button>
+                    </form>
+                  </div>
+            </div>  
+            </div>
+        </section>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  

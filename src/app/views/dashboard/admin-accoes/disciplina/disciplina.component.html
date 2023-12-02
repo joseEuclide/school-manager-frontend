@@ -1,0 +1,54 @@
+<div class="content-wrapper">
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <h1>Main Content</h1>
+          <p>This is the main content area.</p>
+        </div>
+      </div>
+
+      <!-- Carousel Section -->
+      <section id="carouselSection">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="container mt-5">
+              <h2 style="font-size: 24px;">Cadastro de Disciplinas</h2>
+              <form style="max-height: 400px; overflow-y: auto;">
+                <div class="form-group" style="width: 40%;">
+                  <label for="curso" style="font-size: 18px;">Curso</label>
+                  <select class="form-control" id="curso" [(ngModel)]="selectedCurso" name="selectedCurso">
+                    <option *ngFor="let curso of cursos2" [value]="curso.id">{{ curso.nome }}</option>
+                  </select>
+                </div>
+
+                <div *ngFor="let disciplina of disciplinas; let i = index" class="form-row">
+                  <div class="mb-3">
+                    <div class="col mb-2">
+                      <input type="text" class="form-control" [(ngModel)]="disciplina.Nome" name="disciplina_{{i}}" placeholder="Nome da Disciplina" style="font-size: 16px;">
+                    </div>
+                    <div class="col">
+                      <button type="button" class="btn btn-danger" (click)="removerDisciplina(i)" style="font-size: 18px;">Remover</button>
+                      <button type="button" class="btn btn-primary ml-4" (click)="exibirNiveis(i)" style="font-size: 18px;">Exibir Níveis</button>
+                    </div>
+                    <br><br>
+                    <div *ngIf="disciplinas[i]?.exibirNiveis">
+                      <div *ngFor="let nivel of niveis" class="form-check">
+                        <input type="checkbox" class="form-check-input" [(ngModel)]="disciplina.Niveis[nivel.id]" name="nivel_{{i}}_{{nivel.id}}" id="nivel_{{i}}_{{nivel.id}}">
+                        <label style="margin-left:20px" class="form-check-label " for="nivel_{{i}}_{{nivel.id}}">{{nivel.nome}}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-info" (click)="adicionarDisciplina()" style="font-size: 18px;">Adicionar Disciplina</button>
+                <button type="button" class="btn btn-success ml-3" (click)="cadastrarDisciplinas()" style="font-size: 18px;">Cadastrar Disciplinas</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+  <!-- /.content -->
+</div>

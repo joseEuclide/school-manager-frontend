@@ -1,0 +1,64 @@
+.brand-text {
+    font-size: 2em; /* Adjust the font size as needed */
+    text-align: center;
+    display: block;
+  }
+
+  /* Increase font size for the whole page */
+  body {
+    font-size: 1.5em;
+  }
+   /* Adjust the wrapper to fill the height of the window */
+   .wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* 100% of the viewport height */
+    overflow: hidden;
+  }
+
+  /* Adjust the content area to fill the remaining space */
+  .content-wrapper {
+    flex: 1;
+    overflow: auto;
+  }
+  /* Add margin to navbar icons for devices with smaller screens */
+  .navbar-nav .nav-link i {
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
+  /* Add margin to the first navbar icon */
+  .navbar-nav .nav-link:first-child i {
+    margin-left: 10px; /* Adjust the margin as needed */
+  }
+  /* Customize the color of the "Home" link */
+  .nav-item a.nav-link.home-link {
+    background-color: #3498db; /* Blue background color */
+    color: #ffffff; /* White text color */
+    padding: 10px 15px; /* Padding for better readability */
+    border-radius: 5px; /* Rounded corners */
+  }
+  .navbar-text {
+    margin-right: 15px; /* Adjust the margin as needed */
+  }
+  
+  /* Style for sub-menu */
+ .sub-menu {
+    display: none;
+  }
+
+  .nav-item:hover .sub-menu {
+    display: block;
+  }
+
+  .sub-menu .nav-item {
+    padding-left: 20px;
+  }
+  /* Change the color of the circle icons to green */
+  .sub-menu .nav-icon.far.fa-circle {
+    color: green;
+  }
+  /* Style for the "Sair" link at the bottom of the sidebar */
+   .nav-item.logout-link {
+     margin-top: auto; /* Push to the bottom */
+      padding: 10px 15px; /* Padding for better readability */
+  }
+  
