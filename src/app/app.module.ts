@@ -38,6 +38,11 @@ import { SecretariaInicioComponent } from './views/secretaria/secretaria-inicio/
 import { AlunoInicioComponent } from './views/aluno/aluno-inicio/aluno-inicio.component';
 import { PagamentoComponent } from './views/aluno/pagamento/pagamento.component';
 import { NotaComponent } from './views/aluno/nota/nota.component';
+import { ProfessorHomeComponent } from './views/professor/professor-home/professor-home.component';
+import { ProfessorInicioComponent } from './views/professor/professor-inicio/professor-inicio.component';
+import { ProfessorListComponent } from './views/professor/professor-list/professor-list.component';
+import { VerNotasDialogComponent } from './views/professor/notas_alunos-dialog/ver-notas-dialog/ver-notas-dialog.component';
+import { MatTableModule } from '@angular/material/table';
 
 
 @NgModule({
@@ -70,6 +75,10 @@ import { NotaComponent } from './views/aluno/nota/nota.component';
     AlunoInicioComponent,
     PagamentoComponent,
     NotaComponent,
+    ProfessorHomeComponent,
+    ProfessorInicioComponent,
+    ProfessorListComponent,
+    VerNotasDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +89,7 @@ import { NotaComponent } from './views/aluno/nota/nota.component';
     HttpClientModule,
     FormsModule,
     MatSelectModule,
+    MatTableModule,
     NgFor,
     NgMultiSelectDropDownModule.forRoot()
 

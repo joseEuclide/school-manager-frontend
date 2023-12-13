@@ -5,6 +5,7 @@ import { LoginComponent } from './views/login/login/login.component';
 import { TesourariaHomeComponent } from './views/tesouraria/tesouraria-home/tesouraria-home.component';
 import { SecretariaHomeComponent } from './views/secretaria/secretaria-home/secretaria-home.component';
 import { AlunoComponent } from './views/aluno/aluno/aluno.component';
+import { ProfessorHomeComponent } from './views/professor/professor-home/professor-home.component';
 
 const routes: Routes = [
   
@@ -30,7 +31,7 @@ const routes: Routes = [
   },
   {
     path: "prof",
-    component: TesourariaHomeComponent
+    component: ProfessorHomeComponent
   },
   
 ];

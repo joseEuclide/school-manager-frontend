@@ -19,5 +19,7 @@ export interface Nota {
     notaRecurso :  number 
     idDisciplina :  number 
     idAluno :  number 
+    disciplina :  string 
+    
   // Adicione mais propriedades conforme necessário
 }

@@ -1,0 +1,166 @@
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Main Content</h1>
+            <p>This is the main content area.</p>
+          </div>
+        </div>
+  
+        <!-- Carousel Section -->
+        <section id="carouselSection">
+          <div class="row">
+            <div class="col-md-12">
+
+                
+                <div *ngIf="verMensagem" class="text-center mb-2">
+                    <p style="color:cadetblue">{{mensagem}}</p>
+                    <div *ngIf="verNotass" class="text-center">
+                        <button style="color: white;background-color: darkgreen;width: 50%;" (click)="exibirNotas()">Ver As Notas</button>
+                    </div>
+                    
+                </div>
+                <!-- turma-lista.component.html -->
+                <div class="container mb-3" *ngIf="mostrarTurmas">
+                    
+                     <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Curso</th>
+                            <th>Nível</th>
+                            <th>Turno</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let turma of turmas">
+                            <td>{{ turma.id }}</td>
+                            <td>{{ turma.nome }}</td>
+                            <td>{{ turma.curso }}</td>
+                            <td>{{ turma.nivel }}</td>
+                            <td>{{ turma.turno }}</td>
+                            <td>
+                            <button style="width: 50%;" (click)="lancarNotas(turma.id)" class="ml-2 mr-2" style="color: white;background-color: darkgreen;">Lançar Notas</button>
+                            <!-- <button style="width: 50%;" (click)="verNotas(turma)" style="color: white;background-color: dodgerblue;">Ver Notas</button> -->
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="container mb-2" *ngIf="lancarNotas1">
+
+                    <!-- aluno-lista.component.html -->
+                    <!-- aluno-lista.component.html -->
+                    <div class="mb-2">
+                        <label for="disciplina">Escolha a Disciplina:</label>
+                        <br>
+                        <select id="disciplina" [(ngModel)]="disciplinaEscolhida">
+                        <option *ngFor="let disciplina of disciplinas" [value]="disciplina.id">{{ disciplina.nome }}</option>
+                        </select>
+                    </div>
+
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let aluno of alunos">
+                            <td>{{ aluno.id }}</td>
+                            <td>{{ aluno.nome }}</td>
+                            <td>
+                                <input type="number" [(ngModel)]="aluno.nota" min="0" max="20" maxlength="20" placeholder="informe a Nota"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center">
+                        <button style="color: white;background-color: darkgreen;width: 50%;" (click)="lancarNotas2()">Lançar Notas</button>
+                    </div>
+                    
+                     
+                </div>
+                <div class="container mb-2" *ngIf="verNotas0">
+
+                    <div *ngIf="verNotas1">
+                        <!-- aluno-lista.component.html -->
+                        <div class="mb-2">
+                            <label for="disciplina">Escolha a Disciplina:</label>
+                            <select id="disciplina" [(ngModel)]="disciplinaEscolhida">
+                            <option *ngFor="let disciplina of disciplinas" [value]="disciplina.id">{{ disciplina.nome }}</option>
+                            </select>
+                        </div>
+                        <div class="text-center">
+                            <button style="color: white;background-color: darkgreen;width: 50%;" (click)="seguinte()">Seguinte</button>
+                        </div>
+                    </div>
+                    
+    
+                    <div *ngIf="verNotas2">
+                      
+                       <!-- aluno-lista.component.html -->
+                        <table class="container mb-2" >
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Nota</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let aluno of alunos">
+                                <td>{{ aluno.id }}</td>
+                                <td>{{ aluno.nome }}</td>
+                                <td>{{ aluno.nota }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div class="text-center">
+                            <button style="width: 50%;" (click)="lancarNotas2()">Ir P/ Minhas Turmas</button>
+                        </div>
+                    </div>
+                    
+                     
+                </div>
+                <div class="container mb-2" *ngIf="verModal">
+                    <h2 mat-dialog-title>Lista de Alunos</h2>
+                    <div mat-dialog-content>
+                        <div class="text-center">
+                            <button class="mt-2 mb-2" style="color: white;background-color: darkgreen;width: 50%;" (click)="close()">Ir P/ Minhas Turmas</button>
+                        </div>    
+                        <table mat-table [dataSource]="alunos"  class="mat-elevation-z8 custom-table">
+                            <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef>ID</th>
+                            <td mat-cell *matCellDef="let aluno">{{ aluno.id }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="nome">
+                            <th mat-header-cell *matHeaderCellDef>Nome</th>
+                            <td mat-cell *matCellDef="let aluno">{{ aluno.nome }}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="nota">
+                            <th mat-header-cell *matHeaderCellDef>Nota</th>
+                            <td mat-cell *matCellDef="let aluno">{{ aluno.nota }}</td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="['id', 'nome', 'nota']"></tr>
+                            <tr mat-row *matRowDef="let row; columns: ['id', 'nome', 'nota'];"></tr>
+                        </table>
+                    </div>
+                    
+                </div>
+  
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>

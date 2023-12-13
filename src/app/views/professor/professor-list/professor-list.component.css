@@ -1,0 +1,36 @@
+/* turma-lista.component.css */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  .text-center {
+    text-align: center;
+  }
+
+  .custom-table {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.custom-table th {
+    background-color: #8A2BE2; /* Cor de fundo lilás bonita para o cabeçalho */
+    color: white; /* Cor do texto no cabeçalho */
+}
+
+.custom-table td:hover {
+    background-color: #E6E6FA; /* Cor de fundo lilás bonita no hover */
+}
+
+  
