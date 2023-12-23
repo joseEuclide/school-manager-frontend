@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Curso } from 'src/app/views/dashboard/model/curso';
 import { turmaDTO2 } from 'src/app/views/dashboard/model/turmaDTO2';
+import { PrecosPropina } from 'src/app/model/precos/precos.interface';
+import { AdminModel } from 'src/app/model/admin/admin.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +30,9 @@ export class AdminService {
    */
   public getCursos(): Observable<Curso[]> {
     return this.httpClient.get<Curso[]>(this.apiUrl+'todos-cursos');
+  }
+  public getCursos2(): Observable<PrecosPropina[]> {
+    return this.httpClient.get<PrecosPropina[]>(this.apiUrl+'todos-cursos');
   }
   public criarCurso(curso: any): Observable<any> {  
       return this.httpClient.post<any>(this.apiUrl+"cadastrar-Curso", curso, this.httpOptions);
@@ -83,6 +88,11 @@ export class AdminService {
   public criarCalendarioAulas(calendariosAulas: any): Observable<any> {
     console.log("calendariosAulas:  ",calendariosAulas)
     return this.httpClient.post<any>(this.apiUrl+'cadastrar-Calendario-Provas', calendariosAulas, this.httpOptions);
+  }
+
+  public criarAdmin(admin: any): Observable<AdminModel> {
+    console.log("admin:  ",admin)
+    return this.httpClient.post<AdminModel>(this.apiUrl+'cadastrar-admin', admin, this.httpOptions);
   }
 
 

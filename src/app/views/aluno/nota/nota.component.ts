@@ -4,6 +4,7 @@ import { AlunoService } from 'src/app/shared/aluno-service/AlunoService.service'
 import { NotaDTO3 } from 'src/app/model/aluno/NotaDTO3/notaDTO3.interface';
 import { DetalhesAluno } from 'src/app/model/aluno/DetalhesAluno/DetalhesAluno';
 import { Nota } from 'src/app/model/aluno/Nota/nota.interface';
+import { LocalStorageService } from 'src/app/shared/localstorageService/LocalStorage.service';
 
 
 @Component({
@@ -19,27 +20,24 @@ export class NotaComponent implements OnInit{
   idTurma!: number | null;
 
   constructor(private adminService: AdminService,
-    private alunoService: AlunoService
+    private alunoService: AlunoService,
+    private localStorage : LocalStorageService
     ) { 
+
+
       this.aluno = new DetalhesAluno();
       console.log("++++++++ NOTAS AQUI : (this.aluno.notas)= ",this.aluno.notas)
-      this.idAluno = this.recuperarIdAluno();
-      this.idTurma = this.recuperarIdTurma();
-      if((this.idAluno !== null && this.idTurma !==null) || 
-         (this.idAluno !== 0 && this.idTurma !==0)){
-          const idAlunoNotNull = this.idAluno !== null ? this.idAluno : 0;
-          const idTurmaNotNull = this.idTurma !== null ? this.idTurma : 0;
+     
+          const idAlunoNotNull = this.localStorage.getIntItem("idAluno") || 0
+          const idTurmaNotNull = this.localStorage.getIntItem("idTurma") || 0
           this.alunoService.getNotas(idAlunoNotNull,idTurmaNotNull).subscribe(notas => {
-            //this.aluno.notas  = notas
+
             console.log("Notas: ",notas)
-            //this.detalhesAluno.notas = notas
             this.notas =  notas
-    
-            
             console.log("+++++++++ this.aluno.notas: ",this.aluno.notas)
           
           });
-         }
+        
       
     }
 

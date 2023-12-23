@@ -1,0 +1,62 @@
+<div class="content-wrapper">
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <h1>Main Content</h1>
+            <p>This is the main content area.</p>
+          </div>
+        </div>
+  
+        <!-- Carousel Section -->
+        <section id="carouselSection">
+          <div class="row">
+            <div class="col-md-12">
+
+                <div *ngIf="mostrar" class="text-center mb-2">
+                  <p>Preços Cadastrados Com Sucesso !</p>
+                  <button style="color: rgb(230, 227, 240);background-color: darkgreen;width: 50%;" (click)="sair()">Sair</button>
+                </div>
+                <div class="text-center mb-4">
+                    <h3> Cadastrar Os Preços dos Cursos</h3>
+                </div>
+                <table class="table">
+                  <thead>
+                      <tr>
+                          <th>Curso</th>
+                          <th>Nível</th>
+                          <th>Preço</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let preco of precos">
+                          <td>{{ preco.nome }}</td>
+                          <td>
+                              <select class="form-control" [(ngModel)]="preco.nivel">
+                                  <option disabled selected>Selecione o Nível</option>
+                                  <option value="10">10º Classe</option>
+                                  <option value="11">11º Classe</option>
+                                  <option value="12">12º Classe</option>
+                                  <option value="13">13º Classe</option>
+                              </select>
+                          </td>
+                          <td>
+                              <input type="number" class="form-control" [(ngModel)]="preco.valor" min="0" placeholder="Preço" />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+              
+                    <div class="text-center">
+                      <button style="color: white;background-color: darkgreen;width: 50%;" (click)="cadastrarPrecos()"> Cadastrar Preços</button>
+                  </div>
+                    
+                 
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>

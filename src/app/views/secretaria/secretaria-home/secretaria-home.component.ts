@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/shared/localstorageService/LocalStorage.service';
 
 @Component({
   selector: 'app-secretaria-home',
@@ -10,9 +11,12 @@ export class SecretariaHomeComponent implements OnInit{
 
    inicio : boolean = false
    cadastrarAluno : boolean = false
+   id :  number = 0 
+   nome : string = ""
    
  
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+              private localStorage : LocalStorageService) {}
  
 
   ngOnInit(): void {
@@ -20,6 +24,8 @@ export class SecretariaHomeComponent implements OnInit{
     this.inicio = true
     this.cadastrarAluno = false
     
+    this.id = this.localStorage.getIntItem("id") || 0
+    this.nome = localStorage.getItem("nome") || ""
 
   }
 

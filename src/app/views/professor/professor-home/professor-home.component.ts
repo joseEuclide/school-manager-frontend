@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AdminService } from 'src/app/shared/admin-service/admin.service';
+import { LocalStorageService } from 'src/app/shared/localstorageService/LocalStorage.service';
 
 @Component({
   selector: 'app-professor-home',
@@ -11,9 +12,14 @@ export class ProfessorHomeComponent {
 
   inicio : boolean = false
   minhasTurmas : boolean = false
+  
+  id :  number = 0 
+  nome : string = ""
 
 
-  constructor(private router: Router,private adminService: AdminService,) {}
+  constructor(private router: Router,
+    private adminService: AdminService,
+    private localStorage : LocalStorageService) {}
  
     
 
@@ -21,6 +27,9 @@ export class ProfessorHomeComponent {
     // Inicialize a variável 'inicio' obtendo seu valor do serviço ao iniciar o componente
     this.inicio = true
     this.minhasTurmas = false
+
+    this.id = this.localStorage.getIntItem("id") || 0
+    this.nome = localStorage.getItem("nome") || ""
     
   }
 

@@ -43,6 +43,8 @@ import { ProfessorInicioComponent } from './views/professor/professor-inicio/pro
 import { ProfessorListComponent } from './views/professor/professor-list/professor-list.component';
 import { VerNotasDialogComponent } from './views/professor/notas_alunos-dialog/ver-notas-dialog/ver-notas-dialog.component';
 import { MatTableModule } from '@angular/material/table';
+import { PrecosPropinasComponent } from './views/dashboard/admin-accoes/precos-propinas/precos-propinas.component';
+import { AdminComponent } from './views/admin/admin/admin.component';
 
 
 @NgModule({
@@ -79,6 +81,8 @@ import { MatTableModule } from '@angular/material/table';
     ProfessorInicioComponent,
     ProfessorListComponent,
     VerNotasDialogComponent,
+    PrecosPropinasComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

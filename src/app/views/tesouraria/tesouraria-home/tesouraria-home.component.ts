@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/shared/localstorageService/LocalStorage.service';
 
 @Component({
   selector: 'app-tesouraria-home',
@@ -10,15 +11,20 @@ export class TesourariaHomeComponent {
 
    inicio : boolean = false
    propinas : boolean = false
-   
+   id :  number = 0 
+   nome : string = ""
  
-  constructor(private router: Router) {}
+  constructor(private router: Router, private localStorage : LocalStorageService) {}
  
 
   ngOnInit(): void {
     // Inicialize a variável 'inicio' obtendo seu valor do serviço ao iniciar o componente
     this.inicio = true
     this.propinas = false
+    
+    this.id = this.localStorage.getIntItem("id") || 0
+    this.nome = localStorage.getItem("nome") || ""
+
     
 
   }

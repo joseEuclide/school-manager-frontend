@@ -36,7 +36,7 @@ export class ProfessorListComponent implements OnInit{
   turmas2! : ProfessorModel[]
 
   alunos : ProfessorModel[] = [
-    { id: 1, nome: 'João Silva', nota: 0,curso :"",turno:"",nivel:"" },
+    { id: 1, nome: 'João Silva', nota: 0,curso :"",turno:"",nivel :"" },
     { id: 2, nome: 'Maria Oliveira', nota: 0,curso :"",turno:"",nivel:"" },
     { id: 3, nome: 'Pedro Santos', nota: 0,curso :"",turno:"",nivel:"" }
     // Adicione mais alunos conforme necessário
@@ -127,7 +127,7 @@ export class ProfessorListComponent implements OnInit{
       // Implemente a lógica real aqui, como enviar as notas para o servidor, etc.
       
               
-      /*
+      
         this.professorService.saveLancarProvas(this.idTurmaActual,this.idProfActual,this.disciplinaEscolhida,notasLancadas)
         .pipe(
           map((response) => {
@@ -169,7 +169,7 @@ export class ProfessorListComponent implements OnInit{
           }) 
         )
         .subscribe();
-      */
+      
     } 
 
     

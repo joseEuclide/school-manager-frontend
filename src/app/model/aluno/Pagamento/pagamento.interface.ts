@@ -11,6 +11,8 @@ export interface Pagamento {
     agosto : number
     setembro : number
     outubro : number
+    novembro : number
+    dezembro : number
     
 
   // Adicione mais propriedades conforme necessário

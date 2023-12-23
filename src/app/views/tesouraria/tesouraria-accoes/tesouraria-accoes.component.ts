@@ -30,6 +30,7 @@ export class TesourariaAccoesComponent implements OnInit{
   detalhesAluno! : Propina
   exibirM1 = false
   exibirM2 = false
+  relatorio : any
 
   constructor(private fb: FormBuilder,private tesouraria : TesourariaService) { }
 
@@ -122,6 +123,7 @@ export class TesourariaAccoesComponent implements OnInit{
                   this.aluno.mesesPropina = 0
                   this.detalhes_aluno = false
                   this.inicio = true
+                  this.relatorio = response.relatorio
                 }
   
             }),

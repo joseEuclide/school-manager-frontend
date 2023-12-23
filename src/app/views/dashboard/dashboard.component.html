@@ -8,7 +8,7 @@
 
       <!-- Brand Logo -->
     <a href="#" class="brand-link">
-      <span class="brand-text font-weight-light">Jonas </span>
+      <span class="brand-text font-weight-light"> {{nome}} </span>
     </a>
   
     <!-- Sidebar menu -->
@@ -82,6 +82,12 @@
                     <p>Calendário de <br>Aula</p>
                   </a>
               </li>
+              <li class="nav-item">
+                <a routerLink="#" class="nav-link" (click)="aoClicar('precos')">
+                  <i class="nav-icon far fa-circle"></i>
+                  <p>Preços das Propinas</p>
+                </a>
+            </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -122,6 +128,7 @@
     <app-calendario-prova *ngIf="provas"></app-calendario-prova>
     <app-permissao *ngIf="permissoes"></app-permissao>
     <app-pagar *ngIf="pagar"></app-pagar>
+    <app-precos-propinas *ngIf="precos"></app-precos-propinas>
       
     <!-- Footer -->
     <footer class="main-footer">

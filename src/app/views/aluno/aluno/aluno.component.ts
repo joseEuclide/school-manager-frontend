@@ -6,6 +6,7 @@ import { NotaDTO3 } from 'src/app/model/aluno/NotaDTO3/notaDTO3.interface';
 import { Pagamento } from 'src/app/model/aluno/Pagamento/pagamento.interface';
 import { AdminService } from 'src/app/shared/admin-service/admin.service';
 import { AlunoService } from 'src/app/shared/aluno-service/AlunoService.service';
+import { LocalStorageService } from 'src/app/shared/localstorageService/LocalStorage.service';
 
 @Component({
   selector: 'app-aluno',
@@ -23,13 +24,17 @@ export class AlunoComponent implements OnInit{
   aluno!: DetalhesAluno;
   pagamento! : Pagamento
 
-  
+  idAluno :  number = 0 
+  idTurma :  number = 0 
+  nome : string = ""
+
 
 
   constructor(private router: Router,
     private alunoService: AlunoService,
     private adminService: AdminService,
     private detalhesAluno: DetalhesAluno,
+    private localStorage : LocalStorageService
     ) {
       this.aluno = new DetalhesAluno();
       
@@ -56,6 +61,10 @@ export class AlunoComponent implements OnInit{
     this.inicio = true
     this.notas = false
     this.pagamentos = false
+
+    this.idAluno = this.localStorage.getIntItem("idAluno") || 0
+    this.idAluno = this.localStorage.getIntItem("idTurma") || 0
+    this.nome = localStorage.getItem("nome") || ""
     
     // Use a chave para recuperar o valor do localStorage
     // Recuperar o valor do localStorage

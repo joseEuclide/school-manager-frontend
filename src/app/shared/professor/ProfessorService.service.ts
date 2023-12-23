@@ -49,7 +49,7 @@ export class ProfessorService {
    }
    public saveLancarProvas(idTurma: number, idProf: number,idDisciplina : number, notas : any): Observable<DetalheProfessorModel> {  
     return this.httpClient.post<DetalheProfessorModel>(this.apiUrl+"lancar-notas-turma/"+idTurma+"/"+idProf+"/"+idDisciplina, notas, this.httpOptions);
-}
+   }
 
  
 

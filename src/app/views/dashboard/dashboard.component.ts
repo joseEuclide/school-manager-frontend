@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageService } from 'src/app/shared/localstorageService/LocalStorage.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -21,9 +22,14 @@ export class DashboardComponent implements OnInit{
    permissoes: boolean = false
    secretaria : boolean = false
    tesouraria : boolean = false
+   precos : boolean = false
+   id :  number = 0 
+   nome : string = ""
  
-  constructor(private router: Router) {}
- 
+  constructor(private router: Router,
+              private localStorage : LocalStorageService) {}
+  
+
 
   ngOnInit(): void {
     // Inicialize a variável 'inicio' obtendo seu valor do serviço ao iniciar o componente
@@ -39,6 +45,10 @@ export class DashboardComponent implements OnInit{
     this.permissoes = false
     this.secretaria = false
     this.tesouraria = false
+    this.precos = false
+    
+    this.id = this.localStorage.getIntItem("id") || 0
+    this.nome = localStorage.getItem("nome") || ""
 
   }
 
@@ -57,6 +67,7 @@ export class DashboardComponent implements OnInit{
       this.permissoes = false
       this.secretaria = false
       this.tesouraria = false
+      this.precos = false
 
        
     }else  if (valor === 'ver'){
@@ -72,6 +83,7 @@ export class DashboardComponent implements OnInit{
       this.permissoes = false
       this.secretaria = false
       this.tesouraria = false
+      this.precos = false
     }else  if (valor === 'curso'){
       this.inicio = false
       this.curso = true
@@ -85,6 +97,7 @@ export class DashboardComponent implements OnInit{
       this.permissoes = false
       this.secretaria = false
       this.tesouraria = false
+      this.precos = false
     }else  if (valor === 'disciplina'){
       this.inicio = false
       this.curso = false
@@ -98,6 +111,7 @@ export class DashboardComponent implements OnInit{
       this.permissoes = false
       this.secretaria = false
       this.tesouraria = false
+      this.precos = false
     }else  if (valor === 'turma'){
       this.inicio = false
       this.curso = false
@@ -111,6 +125,7 @@ export class DashboardComponent implements OnInit{
       this.permissoes = false
       this.secretaria = false
       this.tesouraria = false
+      this.precos = false
     }else  if (valor === 'Professor'){
       this.inicio = false
       this.curso = false
@@ -124,6 +139,7 @@ export class DashboardComponent implements OnInit{
       this.permissoes = false
       this.secretaria = false
       this.tesouraria = false
+      this.precos = false
     }else  if (valor === 'tesouraria'){
       this.inicio = false
       this.curso = false
@@ -137,6 +153,7 @@ export class DashboardComponent implements OnInit{
       this.permissoes = false
       this.secretaria = false
       this.tesouraria = true
+      this.precos = false
     }else  if (valor === 'secretaria'){
       this.inicio = false
       this.curso = false
@@ -150,6 +167,7 @@ export class DashboardComponent implements OnInit{
       this.permissoes = false
       this.secretaria = true
       this.tesouraria = false
+      this.precos = false
     }else  if (valor === 'prova'){
       this.inicio = false
       this.curso = false
@@ -163,6 +181,7 @@ export class DashboardComponent implements OnInit{
       this.permissoes = false
       this.secretaria = false
       this.tesouraria = false
+      this.precos = false
     }else  if (valor === 'aula'){
       this.inicio = false
       this.curso = false
@@ -176,6 +195,7 @@ export class DashboardComponent implements OnInit{
       this.permissoes = false
       this.secretaria = false
       this.tesouraria = false
+      this.precos = false
     }else  if (valor === 'permissoes'){
       this.inicio = false
       this.curso = false
@@ -189,6 +209,7 @@ export class DashboardComponent implements OnInit{
       this.permissoes = true
       this.secretaria = false
       this.tesouraria = false
+      this.precos = false
     }else  if (valor === 'pagar'){
       this.inicio = false
       this.curso = false
@@ -202,6 +223,21 @@ export class DashboardComponent implements OnInit{
       this.permissoes = false
       this.secretaria = false
       this.tesouraria = false
+      this.precos = false
+    }else  if (valor === 'precos'){
+      this.inicio = false
+      this.curso = false
+      this.disciplina  = false
+      this.turma  = false
+      this.professor = false
+      this.ver = false
+      this.provas = false
+      this.aulas = false
+      this.pagar = false
+      this.permissoes = false
+      this.secretaria = false
+      this.tesouraria = false
+      this.precos = true
     }else  if (valor === 'sair'){
       this.inicio = false
       this.curso = false
@@ -215,6 +251,7 @@ export class DashboardComponent implements OnInit{
       this.permissoes = false
       this.secretaria = false
       this.tesouraria = false
+      this.precos = false
 
       this.router.navigate(['/']);
     }
