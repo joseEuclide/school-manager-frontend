@@ -30,6 +30,7 @@ export class TesourariaAccoesComponent implements OnInit{
   detalhesAluno! : Propina
   exibirM1 = false
   exibirM2 = false
+  mostrarGeral = false
   relatorio : any
 
   constructor(private fb: FormBuilder,private tesouraria : TesourariaService) { }
@@ -43,6 +44,7 @@ export class TesourariaAccoesComponent implements OnInit{
     this.detalhes_aluno = false
     this.exibirM1 = false
     this.exibirM2 = false
+    this.mostrarGeral = true
   }
   
 
@@ -147,6 +149,20 @@ export class TesourariaAccoesComponent implements OnInit{
   imprimirRelatorio() {
     // Lógica para imprimir o relatório
     console.log('Relatório impresso.');
+
+    this.mostrarGeral = false
+    this.inicio = false
+    this.exibirM1 = false
+    this.exibirM2 = false
+    this.detalhes_aluno = false
+  }
+
+  regressar(){
+    this.mostrarGeral = true
+    this.inicio = true
+    this.exibirM1 = false
+    this.exibirM2 = false
+    this.detalhes_aluno = false
   }
 
 }

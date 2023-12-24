@@ -45,7 +45,8 @@ import { VerNotasDialogComponent } from './views/professor/notas_alunos-dialog/v
 import { MatTableModule } from '@angular/material/table';
 import { PrecosPropinasComponent } from './views/dashboard/admin-accoes/precos-propinas/precos-propinas.component';
 import { AdminComponent } from './views/admin/admin/admin.component';
-
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,8 @@ import { AdminComponent } from './views/admin/admin/admin.component';
     FormsModule,
     MatSelectModule,
     MatTableModule,
+    MatCardModule,
+    MatButtonModule,
     NgFor,
     NgMultiSelectDropDownModule.forRoot()
 

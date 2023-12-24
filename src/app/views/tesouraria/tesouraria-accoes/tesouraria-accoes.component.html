@@ -14,7 +14,7 @@
               <div class="col-md-12">
                 <div class="container">
                   <div class="row justify-content-center">
-                    <div class="col-md-6" style="margin-top: 10%;">
+                    <div *ngIf="mostrarGeral" class="col-md-6" style="margin-top: 10%;">
                       <div *ngIf="inicio" class="custom-border">
                         <h2 *ngIf="exibirM1" class="text-center" style="color:rgb(151, 12, 12);"> {{detalhesAluno.mensagem}} </h2><br><br>
                         <div *ngIf="exibirM2">
@@ -43,7 +43,7 @@
                         </form>
                       </div>
                         
-                    <div *ngIf="detalhes_aluno" style="max-height: 90%; overflow-y: auto;">
+                      <div *ngIf="detalhes_aluno" style="max-height: 90%; overflow-y: auto;">
                          <!-- src/app/aluno-form/aluno-form.component.html -->
                           <div class="container mt-2" style="max-height: 400px; overflow-y: auto;">
                             <h2>Detalhes do Aluno</h2>
@@ -87,6 +87,20 @@
                           </div>
                     </div>
                     </div>
+                  </div>
+                  <div *ngIf="!mostrarGeral" class="col-md-6" style="margin-top: 10%;">
+                    <mat-card>
+                      <mat-card-header>
+                        <mat-card-title>Relatório</mat-card-title>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <button mat-raised-button color="primary" (click)="regressar()">Regressar</button>
+                        <div *ngIf="relatorio">
+                          <!-- Exiba os bytes do relatório como desejar -->
+                          {{ relatorio | json }}
+                        </div>
+                      </mat-card-content>
+                    </mat-card>
                   </div>
                 </div>
                 
