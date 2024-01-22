@@ -14,8 +14,9 @@
         <section id="carouselSection">
           <div class="row">
             <div class="col-md-12">
+              <p *ngIf="exibirMensagem" class="text-center " style="width:50%;margin: 0 auto;background-color: midnightblue;color:white;font-style: italic;"> Turma Cadastrada Com Sucesso !</p>
                 <div class="container mt-5">
-                    <h2>Cadastro de Turma</h2>
+                    <h2 style="color: rgb(68, 3, 129);">Cadastro de Turma</h2>
                     <form [formGroup]="turmaForm" (ngSubmit)="onSubmit()">
                       <div class="form-group" style="width: 70%;">
                         <label for="nome">Nome da Turma</label>

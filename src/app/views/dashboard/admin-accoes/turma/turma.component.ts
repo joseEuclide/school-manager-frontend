@@ -21,6 +21,7 @@ export class TurmaComponent {
     { id: 2, nome: 'Analises Clinicas' },
     // Adicione mais cursos conforme necessário
   ];
+  exibirMensagem = false
 
   constructor(private fb: FormBuilder,private adminService : AdminService) { }
 
@@ -35,6 +36,7 @@ export class TurmaComponent {
     this.adminService.getCursos().subscribe(cursos => {
       this.cursos = cursos;
     });
+    this.exibirMensagem = false
   } 
 
   onSubmit() {
@@ -56,6 +58,7 @@ export class TurmaComponent {
           map((response) => {
             console.log('Turma cadastrado com sucesso:', response);
             // Adicione aqui qualquer ação adicional após o cadastro.
+            this.exibirMensagem = true
           }),
           catchError(error => {
             console.error('Erro ao cadastrar a Turma:', error);

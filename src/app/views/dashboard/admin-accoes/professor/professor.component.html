@@ -11,18 +11,16 @@
         </div>
   
         <!-- Carousel Section -->
-        <section id="carouselSection">
+        <section id="carouselSection" >
           <div class="row">
             <div class="col-md-12">
-              <div *ngIf="cadastroSucesso" class="alert alert-success">
-                 <span style="text-align:center;color:green"> Professor Cadastrado com sucesso! </span>
-                <button type="button" class="close" (click)="fecharMensagem()">×</button>
-              </div>
+                 
               
+              <p *ngIf="cadastroSucesso" class="text-center " style="width:50%;margin: 0 auto;background-color: midnightblue;color:white;font-style: italic;"> Professor Cadastrado Com Sucesso !</p>
               <div class="container" *ngIf="mostrar1">
                 <div class="row justify-content-center">
                   <div class="col-md-6" style="margin-top: 10%;">
-                    <h2 class="text-center">Cadastrar o Professor</h2>
+                    <h2 class="text-center" style="color: rgb(68, 3, 129);">Cadastrar o Professor</h2>
                     <form [formGroup]="profForm2">
                       <div class="form-group">
                         <label for="nome" class="font-size-large">Nome do Professor</label>
@@ -39,13 +37,13 @@
               </div>
               <div class="container mt-5" *ngIf="mostrar2">
                
-                <div *ngIf="mostrar3" >
-                  <h2>Seleção de Dados Para o Professor</h2>
-                  <p>Quando Selecionar os Dados Abaixo Vai Trazer Todas as Turmas e Disciplinas Para Onde Quer Cadastrar Esse Professor</p>
+                <div *ngIf="mostrar3" class="text-center" style="max-height: 90%; overflow-y: auto;overflow-x: auto;">
+                  <h2 style="color: rgb(68, 3, 129);">Seleção de Dados Para o Professor</h2>
+                  <p>Quando Selecionar os Dados Abaixo Vai Trazer Todas as Turmas e Disciplinas Para <br>Onde Quer Cadastrar Esse Professor</p>
                   <form [formGroup]="dadosForm" >
                     
                     <div class="row mb-3">
-                       <div class="col-md-6">
+                       <div class="col-md-6 container">
                             <ng-multiselect-dropdown
                                   [placeholder]="'Selecione Os Cursos'"
                                   [settings]="dropdownSettings_Curso"
@@ -61,7 +59,7 @@
                        
                     </div>
                     <div class="row mb-3">
-                        <div class="col-md-6">
+                        <div class="col-md-6 container">
                             <ng-multiselect-dropdown
                                 [placeholder]="'Selecione os Turnos'"
                                 [settings]="dropdownSettings_Turnos"
@@ -75,7 +73,7 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                      <div class="col-md-6">
+                      <div class="col-md-6 container">
                         <ng-multiselect-dropdown
                             [placeholder]="'Selecione os Niveis'"
                             [settings]="dropdownSettings_Niveis"
@@ -93,10 +91,12 @@
                   </form>
                 </div>
 
-                <div *ngIf="mostrar4">
+                <div *ngIf="mostrar4" style="max-height: 90%; overflow-y: auto;overflow-x: auto;">
                     <div class="container mt-2" *ngIf="mostrarTurmas">
                       <ng-container *ngFor="let turma of turmas">
                         <h3 style="text-align: center;">Turma: {{ turma.nome }}</h3>
+                        <br>
+                        
                         <ng-multiselect-dropdown class="row mb-3"
                           [placeholder]="'Selecione As Disciplinas'"
                           [settings]="dropdownSettings_Niveis"
@@ -107,7 +107,10 @@
                         >
                         </ng-multiselect-dropdown>
                       </ng-container>
-                          <button (click)="cadastrarProf3()">Cadastrar Professor</button>
+                          <div class="text-center">
+                            <button style="width: 20%;" type="button" class="btn btn-primary" (click)="cadastrarProf3()">Cadastrar Professor</button>
+                          </div> 
+                          
                          
                     </div>
                     <div class="container mt-2" *ngIf="mostrarMensagem">
@@ -116,7 +119,10 @@
                         Faca Selecao Correctamente De modos a Encontrar as 
                         Turmas Existentes Na Escola ou Cadastre Uma Turma Antes
                        </p>
-                      <button (click)="voltar()">Voltar</button>
+                       <div class="text-center">
+                        <button type="button" class="btn btn-primary" (click)="voltar()" style="width: 20%;">Voltar</button>
+                       </div>
+                      
                     </div>
                     
                 </div>

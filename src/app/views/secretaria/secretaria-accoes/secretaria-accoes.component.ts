@@ -21,8 +21,8 @@ interface Turma {
 })
 export class SecretariaAccoesComponent implements OnInit {
 
-  selectedCurso!: Curso 
-  selectedTurma!: Turma 
+  selectedCurso!: number 
+  selectedTurma!: number 
   selectedNivel: string = ""
   selectedTurno: string = ""
   cursos2: Curso[] = [];
@@ -33,9 +33,11 @@ export class SecretariaAccoesComponent implements OnInit {
   turmas :Turma[] = [];
   mostrar1 = true
   mostrar2 = false
+  sucesso = false
   nome : string =""
   bi : string = ""
   relatorio! : SecretariaModel
+  mensagem = ""
 
   constructor(private adminService: AdminService,
     
@@ -46,23 +48,25 @@ export class SecretariaAccoesComponent implements OnInit {
       this.cursos2 = cursos;
     });
     this.mostrarTurmas = false
-    this.mostrar1 = false
-    this.mostrar2 = true
+    this.mostrar1 = true
+    this.mostrar2 = false
+    this.sucesso = false
   }
 
  
   pesquisar() {
  
-    if(this.selectedCurso.id != 0 && (this.selectedNivel != null || this.selectedNivel != "") && (this.selectedTurno != null || this.selectedTurno != "")){
+    if((this.selectedCurso != 0) && (this.selectedNivel != null || this.selectedNivel != "") && (this.selectedTurno != null || this.selectedTurno != "")){
 
       // Criar Listas para cursos, turnos e niveis
-      this.cursos.push(this.selectedCurso.id)
+      this.cursos.push(this.selectedCurso)
       this.turnos.push(this.selectedTurno)
       this.niveis.push(this.selectedNivel)
    
 
     
       // Exibir no console
+      console.log("this.selectedCurso: ",this.selectedCurso)
       console.log("cursos:", this.cursos);
       console.log("turnos:", this.turnos);
       console.log("Niveis", this.niveis);
@@ -105,14 +109,16 @@ export class SecretariaAccoesComponent implements OnInit {
     } else {
       console.log('Formulário inválido. Verifique os campos.');
     }
-    
+    this.selectedCurso=0
+    this.selectedNivel= ""
+    this.selectedTurno = ""
   }
 
 
   matricular() {
  
    
-    if (this.selectedTurma != null && this.bi !=null && this.nome != null  ) {
+    if (this.selectedTurma != 0 && this.bi !=null && this.nome != null  ) {
        
 
       const aluno = {
@@ -120,24 +126,29 @@ export class SecretariaAccoesComponent implements OnInit {
         "bi":   this.bi
       }
       console.log('Aluno: ',aluno);
-      console.log("idTurma: ", this.selectedTurma.id)
-      this.secretariaService.matricularAluno(this.selectedTurma.id,aluno)
+      console.log("idTurma: ", this.selectedTurma)
+      this.secretariaService.matricularAluno(this.selectedTurma,aluno)
         .pipe(
           map((response) => {+
-            console.log('Turmas Filtradas:', response);
+            console.log('Resultado da Matricula:', response);
             // Adicione aqui qualquer ação adicional após o cadastro.
             
 
             if(response != null){
-              this.mostrarTurmas = false
-              this.relatorio = response
-              this.mostrar2 = false
-              this.mostrar1 = true
+              this.mensagem = "Aluno Cadastrao Com Sucesso !"
+              
+            }else{
+              this.mensagem = "Não Foi Possivel Cadastrar o Aluno Por Problemas técnicos !"
             }
+            this.mostrarTurmas = false
+            this.relatorio = response
+            this.mostrar2 = false
+            this.mostrar1 = true
+            this.sucesso = true
             
           }),
           catchError(error => {
-            console.error('Erro ao Filtrar as Turmas:', error);
+            console.error('Falha ao Fazer a matricula:', error);
             // Trate os erros de requisição, se necessário.
             return throwError(() => new Error(error)); // Throw new Error
           }) 
@@ -146,7 +157,10 @@ export class SecretariaAccoesComponent implements OnInit {
     } else {
       console.log('Formulário inválido. Verifique os campos.');
     }
-    
+
+    this.selectedCurso = 0
+    this.selectedCurso = 0
+    this.selectedTurno = ""
   }
 
 }

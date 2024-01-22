@@ -30,12 +30,11 @@ export class LoginService {
       return this.httpClient.get<ResponsePageable>(this.apiUrl + '?flag=' + flag);
   }
    */
-  
-  public getLogin(username : any, password : any): Observable<Login> {
-    console.log("username: ",username)
-    console.log("password: ",password)
-    return this.httpClient.get<Login>(this.apiUrl+'login/'+username+'/'+password);
-  }
+ 
+  public login(login: any): Observable<Login> {  
+    console.log("login: ",login)
+    return this.httpClient.post<Login>(this.apiUrl+"login",login, this.httpOptions);
+   }
 
 
 }

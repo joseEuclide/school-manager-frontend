@@ -13,15 +13,18 @@ import { AdminService } from 'src/app/shared/admin-service/admin.service';
 export class SecretariaComponent implements OnInit {
 
   secretarioForm: FormGroup;
+  exibirMensagem = false
 
   constructor(private fb: FormBuilder, private adminService : AdminService) {
     this.secretarioForm = this.fb.group({
       secretarios: this.fb.array([])
     });
+    this.exibirMensagem = false
   }
 
   ngOnInit() {
     this.adicionarSecretario();
+    this.exibirMensagem = false
   }
 
   get secretarios() {
@@ -59,6 +62,7 @@ export class SecretariaComponent implements OnInit {
       map((response) => {
         console.log('  ********************  Secretarios Cadastrados:', response);
         // Adicione aqui qualquer ação adicional após o cadastro.
+        this.exibirMensagem = true
        
       }),
       catchError(error => {

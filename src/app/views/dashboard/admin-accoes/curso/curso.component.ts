@@ -13,6 +13,7 @@ import { throwError } from 'rxjs';
 export class CursoComponent implements OnInit{
 
   cursoForm2!: FormGroup;
+  exibirMensagem = false
 
   constructor(private fb: FormBuilder,private adminService : AdminService) { }
 
@@ -20,6 +21,7 @@ export class CursoComponent implements OnInit{
     this.cursoForm2 = this.fb.group({
       nome: ['', [Validators.required]],
     });
+    this.exibirMensagem = false
   }
 
 
@@ -31,6 +33,7 @@ export class CursoComponent implements OnInit{
           map((response) => {
             console.log('Curso cadastrado com sucesso:', response);
             // Adicione aqui qualquer ação adicional após o cadastro.
+            this.exibirMensagem = true
           }),
           catchError(error => {
             console.error('Erro ao cadastrar o curso:', error);

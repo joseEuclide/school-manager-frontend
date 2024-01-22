@@ -14,8 +14,9 @@
         <section id="carouselSection">
           <div class="row">
             <div class="col-md-12">
+              <p *ngIf="exibirMensagem" class="text-center " style="width:50%;margin: 0 auto;background-color: midnightblue;color:white;font-style: italic;"> Tesoureiro(a) Cadastrado(a) Com Sucesso !</p>
               <div class="container mt-5">
-                <h2 style="font-size: 24px;">Cadastro de Tesoureiros</h2>
+                <h2 style="font-size: 19px;" style="color: rgb(68, 3, 129);">Cadastro de Tesoureiros</h2>
                 
                   <form [formGroup]="tesourariaForm">
                     <div formArrayName="tesoureiros">
@@ -32,8 +33,8 @@
                         <br><br>
                       </div>
                     </div>
-                    <button type="button" class="btn btn-success mt-3 mr-3" (click)="adicionarTesoureiros()" style="font-size: 18px;">Adicionar Secretário</button>
-                    <button type="button" class="btn btn-primary mt-3" (click)="cadastrarTesoureiros()" style="font-size: 18px;">Cadastrar Secretários</button>
+                    <button type="button" class="btn btn-success mt-3 mr-3" (click)="adicionarTesoureiros()" style="font-size: 18px;">Adicionar Tesoureiro(a)</button>
+                    <button type="button" class="btn btn-primary mt-3" (click)="cadastrarTesoureiros()" style="font-size: 18px;">Cadastrar Tesoureiro(a)</button>
                   </form>
                   
                   

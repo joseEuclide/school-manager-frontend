@@ -5,6 +5,7 @@ import { ProfessorService } from 'src/app/shared/professor/ProfessorService.serv
 
 import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { LocalStorageService } from 'src/app/shared/localstorageService/LocalStorage.service';
 
 @Component({
   selector: 'app-professor-list',
@@ -26,29 +27,15 @@ export class ProfessorListComponent implements OnInit{
   verNotass = false
   mensagem! : string
   verModal = false
+  sucesso = false
 
-  turmas : ProfessorModel[] = [
-    { id: 1, nome: 'Turma A', curso: 'Ciências da Computação', nivel: 'Graduação', turno: 'Manhã',nota:0 },
-    { id: 2, nome: 'Turma B', curso: 'Engenharia Elétrica', nivel: 'Graduação', turno: 'Tarde',nota:0 },
-    { id: 3, nome: 'Turma C', curso: 'Administração', nivel: 'Pós-graduação', turno: 'Noite',nota:0 }
-    // Adicione mais turmas conforme necessário
-  ];
+  turmas : ProfessorModel[] = [];
   turmas2! : ProfessorModel[]
 
-  alunos : ProfessorModel[] = [
-    { id: 1, nome: 'João Silva', nota: 0,curso :"",turno:"",nivel :"" },
-    { id: 2, nome: 'Maria Oliveira', nota: 0,curso :"",turno:"",nivel:"" },
-    { id: 3, nome: 'Pedro Santos', nota: 0,curso :"",turno:"",nivel:"" }
-    // Adicione mais alunos conforme necessário
-  ];
+  alunos : ProfessorModel[] = [];
   alunos2! : ProfessorModel[]
 
-  disciplinas : ProfessorModel[] = [
-    { id: 1, nome: 'Matemática',curso:"",turno:"",nivel:"",nota:0 },
-    { id: 2, nome: 'Português',curso:"",turno:"",nivel:"",nota:0 },
-    { id: 3, nome: 'História',curso:"",turno:"",nivel:"",nota:0 }
-    // Adicione mais disciplinas conforme necessário
-  ];
+  disciplinas : ProfessorModel[] = [];
   disciplinas2! : ProfessorModel[]
 
   disciplinaEscolhida!: number 
@@ -56,7 +43,8 @@ export class ProfessorListComponent implements OnInit{
 
   constructor(private adminService: AdminService,
     
-    private professorService: ProfessorService) { }
+    private professorService: ProfessorService,
+    private localStorage : LocalStorageService) { }
   
 
   ngOnInit(): void {
@@ -67,9 +55,13 @@ export class ProfessorListComponent implements OnInit{
           const idProfNotNull = this.idProf !== null ? this.idProf : 0;
           this.idProfActual = idProfNotNull
 
-        this.professorService.getTurmas(idProfNotNull).subscribe(cursos => {
-          this.turmas = cursos;
+          console.log("=======>  this.idProfActual: ",this.idProfActual," <============")
+          //converter idAlunoNotNull de String para Int
+          const idProf = this.localStorage.getIntItem("id") || 0
+          this.professorService.getTurmas(idProf).subscribe(turmas => {
+            this.turmas = turmas;
         });
+
 
         this.mostrarTurmas = true
         this.lancarNotas1 = false
@@ -78,6 +70,7 @@ export class ProfessorListComponent implements OnInit{
         this.verNotas2 = false
         this.verMensagem = false
         this.verModal = false
+        this.sucesso = false
   }
   }
 
@@ -103,8 +96,8 @@ export class ProfessorListComponent implements OnInit{
           this.professorService.getAlunosDaTurma(idTurma).subscribe(alunos => {
             this.alunos = alunos;
           });
-
-          this.professorService.getDisciplinas(idProfNotNull,idTurma).subscribe(disciplinas => {
+          const idProf = this.localStorage.getIntItem("id") || 0
+          this.professorService.getDisciplinas(idProf,idTurma).subscribe(disciplinas => {
             this.disciplinas = disciplinas;
           });
 
@@ -121,6 +114,7 @@ export class ProfessorListComponent implements OnInit{
       const notasLancadas = this.alunos.map(aluno => {
         return { idAluno: aluno.id, notaDoAluno: aluno.nota };
       });
+      this.idProfActual = this.localStorage.getIntItem("id") || 0
   
       console.log("this.idTurmaActual: "+this.idTurmaActual+" this.idProfActual: "+this.idProfActual+" this.disciplinaEscolhida: "+this.disciplinaEscolhida)
       console.log(`Notas lançadas para a disciplina ${this.disciplinaEscolhida}:`, notasLancadas);
@@ -135,15 +129,21 @@ export class ProfessorListComponent implements OnInit{
             // Adicione aqui qualquer ação adicional após o cadastro.
             
             if(response.prof != null){
-              // mostrar a Lista 
-              this.alunos = response.prof
-              this.mensagem = response.mensagem
-              
+
+            
               this.verNotass = true
-              this.verMensagem = true
+              
+              console.log("=======================>    response.mensagem: ",response.mensagem)
+              console.log("=======================>    mensagem: ",this.mensagem)
               
 
             }
+              this.alunos = response.prof
+              this.mensagem = response.mensagem
+              this.verMensagem = true
+              this.sucesso = true
+
+
             this.mostrarTurmas = true
             this.verModal = false
             this.lancarNotas1 = false
@@ -153,7 +153,7 @@ export class ProfessorListComponent implements OnInit{
             
           }),
           catchError(error => {
-            console.error('Erro ao Filtrar as Turmas:', error);
+            console.error('Erro Ao Lançar As Notas:', error);
             // Trate os erros de requisição, se necessário.
 
             this.mensagem = "Erro Ao Lançar As Notas, Tente Novamente Mais Tarde"
@@ -241,6 +241,25 @@ export class ProfessorListComponent implements OnInit{
     this.verMensagem = false
     this.verNotass = false
     this.verNotass = false
+  }
+
+  contador(numero : Number) : Number{
+     var contador = 0
+     var numero2 = 0
+     
+     var estado = true
+     sair:
+     while(estado){
+       ++contador;
+       if(contador === numero){
+          numero2 = contador
+          estado = false
+          break sair;
+       }
+     }
+     console.log("ExTRURA DE REPETICAO: ")
+     console.log("Resultado: ",numero2)
+     return numero2
   }
 
  

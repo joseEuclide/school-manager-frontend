@@ -12,6 +12,7 @@ import { AdminService } from 'src/app/shared/admin-service/admin.service';
 export class TesourariaComponent implements OnInit{
 
   tesourariaForm!: FormGroup;
+  exibirMensagem = false
 
   constructor(private fb: FormBuilder,private adminService : AdminService) {
     this.tesourariaForm = this.fb.group({
@@ -21,6 +22,7 @@ export class TesourariaComponent implements OnInit{
 
   ngOnInit() {
     this.adicionarTesoureiros();
+    this.exibirMensagem = false
   }
 
   get tesoureiros() {
@@ -57,7 +59,7 @@ export class TesourariaComponent implements OnInit{
       map((response) => {
         console.log('  ********************  Tesoureiros Cadastrados:', response);
         // Adicione aqui qualquer ação adicional após o cadastro.
-       
+        this.exibirMensagem = true
       }),
       catchError(error => {
         console.error('Erro Ao Cadastrar os Tesoureiros:', error);

@@ -32,10 +32,10 @@ export class ProfessorService {
   }
    */
   
-  public getTurmas(idProfessor: number): Observable<ProfessorModel[]> {
+  public getTurmas(idProfessor: Number): Observable<ProfessorModel[]> {
    console.log("idProfessor: ",idProfessor)
    console.log("************* Buscando Turmas do Professor")
-    return this.httpClient.get<ProfessorModel[]>(this.apiUrl+'lista-turmas-do-professor/'+idProfessor);
+    return this.httpClient.get<ProfessorModel[]>(this.apiUrl+'listar-turmas-do-professor/'+idProfessor);
   }
     public getDisciplinas(idProf: number,idTurma: number): Observable<ProfessorModel[]> {
     console.log("************* Buscando Disciplinas do Professor") 
@@ -50,10 +50,5 @@ export class ProfessorService {
    public saveLancarProvas(idTurma: number, idProf: number,idDisciplina : number, notas : any): Observable<DetalheProfessorModel> {  
     return this.httpClient.post<DetalheProfessorModel>(this.apiUrl+"lancar-notas-turma/"+idTurma+"/"+idProf+"/"+idDisciplina, notas, this.httpOptions);
    }
-
- 
-
-  
-
 
 }

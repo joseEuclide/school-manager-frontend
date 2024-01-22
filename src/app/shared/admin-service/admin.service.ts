@@ -5,6 +5,7 @@ import { Curso } from 'src/app/views/dashboard/model/curso';
 import { turmaDTO2 } from 'src/app/views/dashboard/model/turmaDTO2';
 import { PrecosPropina } from 'src/app/model/precos/precos.interface';
 import { AdminModel } from 'src/app/model/admin/admin.interface';
+import { DetalheProfessorModel } from 'src/app/model/professor/detralheProfessor.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -70,11 +71,11 @@ export class AdminService {
   }
   public criarTesoureiros(tesoureiros: any): Observable<any> {
     console.log("tesoureiros:  ",tesoureiros)
-    return this.httpClient.post<any>(this.apiUrl+'cadastrar-secretarios', tesoureiros, this.httpOptions);
+    return this.httpClient.post<any>(this.apiUrl+'cadastrar-tesoureiros', tesoureiros, this.httpOptions);
   }
-  public criarPermissao(permissaao: any): Observable<any> {
+  public criarPermissao(permissaao: any): Observable<DetalheProfessorModel> {
     console.log("permissaao:  ",permissaao)
-    return this.httpClient.post<any>(this.apiUrl+'Atribuir-E-Remover-permissoes', permissaao, this.httpOptions);
+    return this.httpClient.post<DetalheProfessorModel>(this.apiUrl+'Atribuir-E-Remover-permissoes', permissaao, this.httpOptions);
   }
   public criarPagarFuncionarios(pagar: any): Observable<any> {
     console.log("permissaao:  ",pagar)

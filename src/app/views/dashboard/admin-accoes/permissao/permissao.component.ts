@@ -11,7 +11,7 @@ import { FormularioData } from '../../model/FormularioData ';
   templateUrl: './permissao.component.html',
   styleUrls: ['./permissao.component.css']
 })
-export class PermissaoComponent {
+export class PermissaoComponent implements OnInit{
 
   permissao = {
     tipoDeProva: '',
@@ -22,9 +22,15 @@ export class PermissaoComponent {
 
   idProf: number = 0;
   status: Boolean = false
+  mensagem = ""
+  exibirMensagem = false
 
   constructor(private fb: FormBuilder,private adminService : AdminService) {
    
+  }
+
+  ngOnInit(): void {
+    this.exibirMensagem = false
   }
 
   criarPermissao() {
@@ -35,12 +41,13 @@ export class PermissaoComponent {
         idProf: this.idProf
       };
       console.log(JSON.stringify(resultado));
-      this.adminService.criarPermissao(JSON.stringify(resultado))
+      this.adminService.criarPermissao(resultado)
     .pipe(
       map((response) => {
         console.log('  ********************  permissão Cadastradas:', response);
         // Adicione aqui qualquer ação adicional após o cadastro.
-       
+       this.mensagem = response.mensagem
+       this.exibirMensagem = true
       }),
       catchError(error => {
         console.error('Erro Ao Cadastrar as Permissoes:', error);

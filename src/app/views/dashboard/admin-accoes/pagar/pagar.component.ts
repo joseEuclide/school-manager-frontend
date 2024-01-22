@@ -12,13 +12,18 @@ import { FormularioData } from '../../model/FormularioData ';
   templateUrl: './pagar.component.html',
   styleUrls: ['./pagar.component.css']
 })
-export class PagarComponent {
+export class PagarComponent implements OnInit{
 
 
   status: Boolean = false
+  exibirMensagem = false
 
   constructor(private fb: FormBuilder,private adminService : AdminService) {
    
+  }
+
+  ngOnInit(): void {
+    this.exibirMensagem = false
   }
 
   pagarFuncionarios() {
@@ -29,7 +34,7 @@ export class PagarComponent {
       map((response) => {
         console.log('  ********************  Funcionarios Pagos Com Sucesso:', response);
         // Adicione aqui qualquer ação adicional após o cadastro.
-       
+        this.exibirMensagem = true
       }),
       catchError(error => {
         console.error('Erro Ao Pagar os Funcionarios:', error);

@@ -14,11 +14,12 @@
           <div class="row">
             <div class="col-md-12">
 
-                
-                <div *ngIf="verMensagem" class="text-center mb-2">
-                    <p style="color:cadetblue">{{mensagem}}</p>
+                <div>
+                    <div class="container">
+                        <p *ngIf="verMensagem" class="text-center" style="width:50%;margin: 0 auto;background-color: midnightblue;color:white;font-style: italic;"> {{mensagem}}</p>
+                    </div><br>
                     <div *ngIf="verNotass" class="text-center">
-                        <button style="color: white;background-color: darkgreen;width: 50%;" (click)="exibirNotas()">Ver As Notas</button>
+                        <button style="color: white;background-color: darkgreen;width: 30%;" (click)="exibirNotas()">Ver As Notas</button>
                     </div>
                     
                 </div>
@@ -75,7 +76,7 @@
                             <td>{{ aluno.id }}</td>
                             <td>{{ aluno.nome }}</td>
                             <td>
-                                <input type="number" [(ngModel)]="aluno.nota" min="0" max="20" maxlength="20" placeholder="informe a Nota"/>
+                                <input type="number" [(ngModel)]="aluno.nota" min="0" max="20" maxlength="50" placeholder="informe a Nota"/>
                             </td>
                         </tr>
                         </tbody>
@@ -108,14 +109,12 @@
                         <table class="container mb-2" >
                             <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Nome</th>
                                 <th>Nota</th>
                             </tr>
                             </thead>
                             <tbody>
                             <tr *ngFor="let aluno of alunos">
-                                <td>{{ aluno.id }}</td>
                                 <td>{{ aluno.nome }}</td>
                                 <td>{{ aluno.nota }}</td>
                             </tr>

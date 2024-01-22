@@ -337,6 +337,7 @@ export class ProfessorComponent {
           }) 
         )
         .subscribe();    
+        this.profForm2.reset();
   }
 
   mostrarNiveis(){

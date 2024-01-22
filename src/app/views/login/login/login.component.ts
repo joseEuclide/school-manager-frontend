@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { Login } from 'src/app/model/login/login.interface';
 import { LocalStorageService } from 'src/app/shared/localstorageService/LocalStorage.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -16,14 +17,22 @@ export class LoginComponent implements OnInit{
   username: string= "";
   password: string = "";
   login2! : Login 
+  detalheLogin!: FormGroup;
+  mostrarMensagem = false
+
 
   ngOnInit(): void {
-   
+    this.detalheLogin = this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
+    this.mostrarMensagem = false
   }  
 
   constructor(private router: Router,
               private loginService : LoginService,
-              private localStorage : LocalStorageService) {}
+              private localStorage : LocalStorageService,
+              private fb: FormBuilder) {}
             
 
  
@@ -31,9 +40,16 @@ export class LoginComponent implements OnInit{
   login() {
  
    
+     console.log("Username: ",this.username,"Password: ",this.password)
+      
+     const dadosLogin = {
+       "username": this.username,
+       "password": this.password
+     }
      
-    this.router.navigate(['/admin']);
-      this.loginService.getLogin(this.username, this.password)
+     console.log("dadosLogin: ", this.detalheLogin.value)
+      
+        this.loginService.login(this.detalheLogin.value)
         .pipe(
           map((response) => {
             console.log('Dados de Login:', response);
@@ -65,6 +81,12 @@ export class LoginComponent implements OnInit{
               
             }
 
+            if(this.login2.mensagem === "Não Existe Ninguém Na Escola Com Os Dados Informados !" || 
+               this.login2.mensagem === "Coloque Apenas Numeros Nos Campos Login e Senha, Sem Espaço"
+              ){
+              this.mostrarMensagem = true
+            }
+
 
             // Adicione aqui qualquer ação adicional após o cadastro.
           }),
@@ -75,6 +97,8 @@ export class LoginComponent implements OnInit{
           }) 
         )
         .subscribe();
+        this.detalheLogin.reset()
+        
 
         
     } 

@@ -14,7 +14,8 @@ export class CalendarioAulaComponent {
   
   disciplinas: { nome: string, horarios: { diaAula: string, horaInicio: string, horaFim: string, tempo: string }[] }[] = [];
   diasSemana = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira'];
-
+  exibirMensagem = false
+  mensagem = ""
   cadastrarCalendarios() {
     console.log('Dados dos Calendários:', this.disciplinas);
   }
@@ -24,6 +25,7 @@ export class CalendarioAulaComponent {
       nome: '',
       horarios: []
     });
+    this.exibirMensagem = false
   }
 
   adicionarHorario(disciplinaIndex: number) {

@@ -16,17 +16,20 @@
   <div class="container">
     <div class="container">
         <div class="form-container">
+          <div class="form-group mb-2">
+             <p style="margin: 0 auto;color: crimson;">{{login2.mensagem}}</p>
+          </div>
           <h2>Acesso Ao Sistema !</h2>
-          <form>
+          <form [formGroup]="detalheLogin">
             <div class="form-group">
               <label for="username">Usuário:</label>
-              <input type="text" name="username" id="username" class="form-control" placeholder="Digite seu usuário" [(ngModel)]="username">
+              <input type="text" formControlName="username" id="username" class="form-control" placeholder="Digite seu usuário">
             </div>
             <div class="form-group">
               <label for="password">Senha:</label>
-              <input type="password" name="password" id="password" class="form-control" placeholder="Digite sua senha" [(ngModel)]="password">
+              <input type="password" formControlName="password" id="password" class="form-control" placeholder="Digite sua senha" >
             </div>
-            <button type="button" (click)="login()" class="btn btn-login">Entrar</button>
+            <button type="button" (click)="login()" [disabled]="!detalheLogin.valid" class="btn btn-login">Entrar</button>
           </form>
         </div>
       </div>

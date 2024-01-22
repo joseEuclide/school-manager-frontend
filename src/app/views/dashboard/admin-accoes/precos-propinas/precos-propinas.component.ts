@@ -20,6 +20,7 @@ export class PrecosPropinasComponent implements OnInit{
   precos! : PrecosPropina[]
   precos2 : PrecosPropina[] = [{ id: 1, idCurso: 1,nivel:"11",nome:"jota",valor:12 }]
   mostrar = false
+  exibirMensagem = false
 
   constructor(private fb: FormBuilder,
     private adminService : AdminService,
@@ -32,6 +33,7 @@ export class PrecosPropinasComponent implements OnInit{
       this.precos = precos;
     });
     this.mostrar = false
+    this.exibirMensagem = false
   }
 
  cadastrarPrecos() {
@@ -49,6 +51,7 @@ export class PrecosPropinasComponent implements OnInit{
             console.log('Resultado do Lancamento de Provas: ', response);
             this.precos2 =  response
             this.mostrar = true
+            this.exibirMensagem = true
             
           }),
           catchError(error => {

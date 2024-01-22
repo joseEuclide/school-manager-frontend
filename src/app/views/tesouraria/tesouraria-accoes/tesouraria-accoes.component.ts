@@ -17,12 +17,14 @@ export class TesourariaAccoesComponent implements OnInit{
   dadosAluno!: FormGroup;
   inicio= true;
   detalhes_aluno = false
+  mesesPropina = 0
   aluno = {
     nome: '',
     matricula: '',
     curso: '',
     mesesPropina: 0
   };
+  meses = ["Janeiro","Fevereiro","Marco","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","DEzembro"]
 
   pagamentoRealizado = false;
   mesesAPagar: string[]= []
@@ -32,6 +34,8 @@ export class TesourariaAccoesComponent implements OnInit{
   exibirM2 = false
   mostrarGeral = false
   relatorio : any
+  mesesSelecionados : string[]=[]  
+  mensagem = false
 
   constructor(private fb: FormBuilder,private tesouraria : TesourariaService) { }
 
@@ -45,6 +49,7 @@ export class TesourariaAccoesComponent implements OnInit{
     this.exibirM1 = false
     this.exibirM2 = false
     this.mostrarGeral = true
+    this.mensagem = false
   }
   
 
@@ -95,22 +100,18 @@ export class TesourariaAccoesComponent implements OnInit{
 
   pagarPropina() {
 
-    if(this.aluno.mesesPropina > 0){
-      for (let i = 0; i < this.aluno.mesesPropina; i++) {
-        this.mesesAPagar2.push(this.mesesAPagar[i]);      
-      }
-      console.log(this.mesesAPagar2);
+      
       // Obtendo o valor do campo idTurma
       const idTurma = this.dadosAluno.get('idTurma')?.value;
+      this.mesesAPagar =  this.mesesAPagar3(this.mesesPropina)
+      
       const dadosDoAluno = {
         "idTurma":idTurma,
         "idAluno":this.detalhesAluno.id,
-        "mesesAPagar": this.mesesAPagar2
+        "mesesAPagar": this.mesesAPagar 
       }
-      
+      console.log('Dados do pagamento:', dadosDoAluno);
       // Enviar os dados na API
-      if (dadosDoAluno != null) {
-        console.log('Dados do pagamento:', dadosDoAluno);
         this.tesouraria.pagarPropina(dadosDoAluno)
           .pipe(
             map((response) => {
@@ -118,7 +119,6 @@ export class TesourariaAccoesComponent implements OnInit{
               // Adicione aqui qualquer ação adicional após o cadastro.
                 console.log("Resposta: ",response)
                 console.log("pagamento efectuado com sucesso")
-                if(response.relatorio != null){
                   this.exibirM2 = true
                   this.exibirM1 = false
                   this.detalhesAluno = response
@@ -126,7 +126,11 @@ export class TesourariaAccoesComponent implements OnInit{
                   this.detalhes_aluno = false
                   this.inicio = true
                   this.relatorio = response.relatorio
-                }
+                  this.mostrarGeral = true
+                  this.mensagem = true
+                  
+                  
+                
   
             }),
             catchError(error => {
@@ -136,14 +140,11 @@ export class TesourariaAccoesComponent implements OnInit{
             }) 
           )
           .subscribe();
-      } else {
-        console.log('Formulário inválido. Verifique os campos.');
-      }
-    }else{
-      // Informe Quantos meses Quer Pagar
-      // 
-    }
+      
+    
     this.dadosAluno.reset();
+    this.mesesPropina = 0
+    
   }
 
   imprimirRelatorio() {
@@ -165,4 +166,10 @@ export class TesourariaAccoesComponent implements OnInit{
     this.detalhes_aluno = false
   }
 
+   mesesAPagar3(meses : number):string[]{
+    for(let i=0;i<meses;i++){
+        this.mesesSelecionados.push(this.mesesAPagar[i])
+      }
+    return this.mesesSelecionados
+   }
 }

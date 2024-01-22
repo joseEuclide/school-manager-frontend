@@ -14,12 +14,9 @@
           <div class="row">
             <div class="col-md-12">
 
-                <div *ngIf="mostrar" class="text-center mb-2">
-                  <p>Preços Cadastrados Com Sucesso !</p>
-                  <button style="color: rgb(230, 227, 240);background-color: darkgreen;width: 50%;" (click)="sair()">Sair</button>
-                </div>
+              <p *ngIf="exibirMensagem" class="text-center mt-2 mb-4" style="width:50%;margin: 0 auto;background-color: midnightblue;color:white;font-style: italic;"> Preços Cadastrados Com Sucesso !</p>
                 <div class="text-center mb-4">
-                    <h3> Cadastrar Os Preços dos Cursos</h3>
+                    <h3 style="color: rgb(68, 3, 129);"> Cadastrar Os Preços dos Cursos</h3>
                 </div>
                 <table class="table">
                   <thead>
