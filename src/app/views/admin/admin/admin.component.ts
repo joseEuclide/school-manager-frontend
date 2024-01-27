@@ -18,21 +18,25 @@ export class AdminComponent implements OnInit{
     email: ''
   };
   mostrar = false
+  mostrarProgress = false
 
   ngOnInit(): void {
     this.mostrar = false
+    this.mostrarProgress = false
   }
 
   constructor(private fb: FormBuilder,private adminService : AdminService) { }
 
 
   cadastrar() {
+      this.mostrarProgress = true
       console.log('Dados do Admin a serem cadastrados:', this.formData);
       this.adminService.criarAdmin(this.formData)
         .pipe(
           map((response) => {
             console.log('Admin cadastrado com sucesso:', response);
             this.mostrar = true
+            this.mostrarProgress = false
 
             // Adicione aqui qualquer ação adicional após o cadastro.
           }),

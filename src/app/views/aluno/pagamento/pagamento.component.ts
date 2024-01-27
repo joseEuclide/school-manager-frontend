@@ -16,6 +16,7 @@ export class PagamentoComponent implements OnInit{
   aluno!: DetalhesAluno;
   idAluno!: number | null;
   idTurma!: number | null;
+  mostrarProgress = false
 
     constructor(private adminService: AdminService,
       private alunoService: AlunoService,
@@ -25,7 +26,7 @@ export class PagamentoComponent implements OnInit{
         this.pagamento =  this.aluno.pagamento
         console.log("++++++++ PAGAMENTO AQUI : (this.aluno.pagamento)= ",this.aluno.pagamento)
         
-        
+          this.mostrarProgress = false
           const idAlunoNotNull = this.localStorage.getIntItem("idAluno") || 0
           const idTurmaNotNull = this.localStorage.getIntItem("idTurma") || 0
           this.alunoService.getPagamento(idAlunoNotNull,idTurmaNotNull).subscribe(pagamento => {

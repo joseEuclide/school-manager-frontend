@@ -21,70 +21,73 @@
         </p>
       </div>
 
-      <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
-        <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
-        <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
-
-        <div class="card bg-glass">
-          <div class="card-body px-4 py-5 px-md-5">
-            <form >
-              <div class="row">
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" id="form3Example1" class="form-control" [(ngModel)]="formData.nome" name="nomeCompleto" />
-                    <label class="form-label" for="form3Example1">Nome Completo</label>
+      <div>
+          <div *ngIf="mostrarProgress" class="text-center" style="margin: 30%;">Mostrar Progress Bar</div>
+          <div *ngIf="!mostrarProgress" class="col-lg-6 mb-5 mb-lg-0 position-relative">
+            <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+            <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+    
+            <div class="card bg-glass">
+              <div class="card-body px-4 py-5 px-md-5">
+                <form >
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="form3Example1" class="form-control" [(ngModel)]="formData.nome" name="nomeCompleto" />
+                        <label class="form-label" for="form3Example1">Nome Completo</label>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" id="form3Example2" class="form-control" [(ngModel)]="formData.bi" name="bilheteIdentidade" />
+                        <label class="form-label" for="form3Example2">Bilhete de Identidade</label>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <div class="form-outline">
-                    <input type="text" id="form3Example2" class="form-control" [(ngModel)]="formData.bi" name="bilheteIdentidade" />
-                    <label class="form-label" for="form3Example2">Bilhete de Identidade</label>
+                
+                  <div class="form-outline mb-4">
+                    <input type="email" id="form3Example3" class="form-control" placeholder=" ( Opcional )" [(ngModel)]="formData.email" name="email" />
+                    <label class="form-label" for="form3Example3">Email address</label>
                   </div>
-                </div>
+    
+                  
+    
+                  <!-- Checkbox -->
+                  <div class="form-check d-flex justify-content-center mb-4">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked  disabled/>
+                    <label class="form-check-label" for="form2Example33">
+                      Informações de Acesso Ao Sistema
+                    </label>
+                  </div>
+    
+                  <!-- Submit button -->
+                  <button (click)="cadastrar()" class="btn btn-primary btn-block mb-4">
+                    Cadastrar
+                  </button>
+    
+                  <!-- Register buttons -->
+                  <div class="text-center">
+                    <p>or sign up with:</p>
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-facebook-f"></i>
+                    </button>
+    
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-google"></i>
+                    </button>
+    
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-twitter"></i>
+                    </button>
+    
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-github"></i>
+                    </button>
+                  </div>
+                </form>
               </div>
-            
-              <div class="form-outline mb-4">
-                <input type="email" id="form3Example3" class="form-control" placeholder=" ( Opcional )" [(ngModel)]="formData.email" name="email" />
-                <label class="form-label" for="form3Example3">Email address</label>
-              </div>
-
-              
-
-              <!-- Checkbox -->
-              <div class="form-check d-flex justify-content-center mb-4">
-                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked  disabled/>
-                <label class="form-check-label" for="form2Example33">
-                  Informações de Acesso Ao Sistema
-                </label>
-              </div>
-
-              <!-- Submit button -->
-              <button (click)="cadastrar()" class="btn btn-primary btn-block mb-4">
-                Cadastrar
-              </button>
-
-              <!-- Register buttons -->
-              <div class="text-center">
-                <p>or sign up with:</p>
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                  <i class="fab fa-facebook-f"></i>
-                </button>
-
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                  <i class="fab fa-google"></i>
-                </button>
-
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                  <i class="fab fa-twitter"></i>
-                </button>
-
-                <button type="button" class="btn btn-link btn-floating mx-1">
-                  <i class="fab fa-github"></i>
-                </button>
-              </div>
-            </form>
+            </div>
           </div>
-        </div>
       </div>
     </div>
   </div>

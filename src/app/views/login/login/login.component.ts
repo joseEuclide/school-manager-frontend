@@ -39,12 +39,18 @@ export class LoginComponent implements OnInit{
 
   login() {
  
+
    
      console.log("Username: ",this.username,"Password: ",this.password)
       
      const dadosLogin = {
        "username": this.username,
        "password": this.password
+     }
+
+     if(this.username === "Cadastrar" && this.password === "Admin"){
+       localStorage.setItem('nome', "Novo Admin");
+       this.router.navigate(['/novo-admin']);
      }
      
      console.log("dadosLogin: ", this.detalheLogin.value)

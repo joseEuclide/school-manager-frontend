@@ -15,7 +15,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path: "cadastrar-admin",
+    path: "novo-admin",
     component: AdminComponent
   },
   {

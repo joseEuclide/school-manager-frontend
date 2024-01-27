@@ -11,7 +11,8 @@
   
         <!-- Carousel Section -->
         <section id="carouselSection">
-          <div class="row">
+          <div *ngIf="mostrarProgress" class="text-center" style="margin: 30%;">Mostrar Progress Bar</div>
+          <div *ngIf="!mostrarProgress" class="row">
             <div class="col-md-12 scrollbar">
               <div class="container mt-2 mb-3">
                 <h1 class="mb-2" style="font-weight: bold;">Registro dos Seus Pagamentos</h1>

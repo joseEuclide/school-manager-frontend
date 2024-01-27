@@ -18,6 +18,10 @@ export class NotaComponent implements OnInit{
   aluno!: DetalhesAluno;
   idAluno!: number | null;
   idTurma!: number | null;
+  mostrarProgress = false
+  color = 'primary';
+  mode = 'determinate';
+  value = 50;
 
   constructor(private adminService: AdminService,
     private alunoService: AlunoService,
@@ -27,7 +31,7 @@ export class NotaComponent implements OnInit{
 
       this.aluno = new DetalhesAluno();
       console.log("++++++++ NOTAS AQUI : (this.aluno.notas)= ",this.aluno.notas)
-     
+          this.mostrarProgress = true
           const idAlunoNotNull = this.localStorage.getIntItem("idAluno") || 0
           const idTurmaNotNull = this.localStorage.getIntItem("idTurma") || 0
           this.alunoService.getNotas(idAlunoNotNull,idTurmaNotNull).subscribe(notas => {
@@ -35,7 +39,7 @@ export class NotaComponent implements OnInit{
             console.log("Notas: ",notas)
             this.notas =  notas
             console.log("+++++++++ this.aluno.notas: ",this.aluno.notas)
-          
+            this.mostrarProgress = false
           });
         
       

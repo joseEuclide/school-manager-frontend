@@ -18,6 +18,8 @@ import { InfoEscolaComponent } from './views/dashboard/component/info-escola/inf
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {  ReactiveFormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatProgressBar} from '@angular/material/progress-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
 import { CursoComponent } from './views/dashboard/admin-accoes/curso/curso.component';
 import { FormsModule } from '@angular/forms';
@@ -97,6 +99,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatTableModule,
     MatCardModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
     NgFor,
     NgMultiSelectDropDownModule.forRoot()
 
