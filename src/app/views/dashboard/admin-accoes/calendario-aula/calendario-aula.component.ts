@@ -16,6 +16,7 @@ export class CalendarioAulaComponent {
   diasSemana = ['Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-feira'];
   exibirMensagem = false
   mensagem = ""
+  mostrarProgress = false
   cadastrarCalendarios() {
     console.log('Dados dos Calendários:', this.disciplinas);
   }

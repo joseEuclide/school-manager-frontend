@@ -21,6 +21,7 @@ export class PrecosPropinasComponent implements OnInit{
   precos2 : PrecosPropina[] = [{ id: 1, idCurso: 1,nivel:"11",nome:"jota",valor:12 }]
   mostrar = false
   exibirMensagem = false
+  mostrarProgress = false
 
   constructor(private fb: FormBuilder,
     private adminService : AdminService,
@@ -34,11 +35,13 @@ export class PrecosPropinasComponent implements OnInit{
     });
     this.mostrar = false
     this.exibirMensagem = false
+    this.mostrarProgress = false
   }
 
  cadastrarPrecos() {
     
 
+      this.mostrarProgress = true
       const precosLancados = this.precos.map(preco => {
         return { idCurso: preco.id, nivel: preco.nivel, valor: preco.valor};
       });
@@ -52,6 +55,7 @@ export class PrecosPropinasComponent implements OnInit{
             this.precos2 =  response
             this.mostrar = true
             this.exibirMensagem = true
+            this.mostrarProgress = false
             
           }),
           catchError(error => {

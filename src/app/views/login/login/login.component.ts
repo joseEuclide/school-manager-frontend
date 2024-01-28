@@ -19,6 +19,8 @@ export class LoginComponent implements OnInit{
   login2! : Login 
   detalheLogin!: FormGroup;
   mostrarMensagem = false
+  mostrarProgress = false
+  spinnerBorderColor = 'red'; // Cor inicial da borda do spinner
 
 
   ngOnInit(): void {
@@ -27,6 +29,8 @@ export class LoginComponent implements OnInit{
       password: ['', [Validators.required]],
     });
     this.mostrarMensagem = false
+    this.mostrarProgress = false
+    this.startColorChangeInterval();
   }  
 
   constructor(private router: Router,
@@ -40,7 +44,7 @@ export class LoginComponent implements OnInit{
   login() {
  
 
-   
+     this.mostrarProgress = true
      console.log("Username: ",this.username,"Password: ",this.password)
       
      const dadosLogin = {
@@ -93,6 +97,8 @@ export class LoginComponent implements OnInit{
               this.mostrarMensagem = true
             }
 
+            this.mostrarProgress = false
+
 
             // Adicione aqui qualquer ação adicional após o cadastro.
           }),
@@ -108,6 +114,17 @@ export class LoginComponent implements OnInit{
 
         
     } 
+
+    startColorChangeInterval() {
+      setInterval(() => {
+        this.spinnerBorderColor = this.getRandomColor();
+      }, 1000); // Intervalo de mudança de cor (em milissegundos)
+    }
+  
+    getRandomColor(): string {
+      const colors = ['red', 'blue', 'green', 'yellow']; // Adicione as cores que deseja aqui
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
     
   }
 

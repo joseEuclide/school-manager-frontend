@@ -13,16 +13,19 @@ export class TesourariaComponent implements OnInit{
 
   tesourariaForm!: FormGroup;
   exibirMensagem = false
+  mostrarProgress = false
 
   constructor(private fb: FormBuilder,private adminService : AdminService) {
     this.tesourariaForm = this.fb.group({
       tesoureiros: this.fb.array([])
     });
+    
   }
 
   ngOnInit() {
     this.adicionarTesoureiros();
     this.exibirMensagem = false
+    this.mostrarProgress = false
   }
 
   get tesoureiros() {
@@ -51,6 +54,7 @@ export class TesourariaComponent implements OnInit{
   }
 
   cadastrarTesoureiros() {
+    this.mostrarProgress = true
     // Lógica para cadastrar os secretários com nome e BI
     const tesoureiros = this.tesourariaForm.value.tesoureiros;
     console.log('Dados dos Tesoureiros:', tesoureiros);
@@ -60,6 +64,7 @@ export class TesourariaComponent implements OnInit{
         console.log('  ********************  Tesoureiros Cadastrados:', response);
         // Adicione aqui qualquer ação adicional após o cadastro.
         this.exibirMensagem = true
+        this.mostrarProgress = false
       }),
       catchError(error => {
         console.error('Erro Ao Cadastrar os Tesoureiros:', error);

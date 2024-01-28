@@ -38,6 +38,7 @@ export class SecretariaAccoesComponent implements OnInit {
   bi : string = ""
   relatorio! : SecretariaModel
   mensagem = ""
+  mostrarProgress = false
 
   constructor(private adminService: AdminService,
     
@@ -51,11 +52,13 @@ export class SecretariaAccoesComponent implements OnInit {
     this.mostrar1 = true
     this.mostrar2 = false
     this.sucesso = false
+    this.mostrarProgress = false
   }
 
  
   pesquisar() {
  
+    this.mostrarProgress = true
     if((this.selectedCurso != 0) && (this.selectedNivel != null || this.selectedNivel != "") && (this.selectedTurno != null || this.selectedTurno != "")){
 
       // Criar Listas para cursos, turnos e niveis
@@ -97,6 +100,7 @@ export class SecretariaAccoesComponent implements OnInit {
               this.mostrar1 = true
               this.mostrar2 = false
             }
+            this.mostrarProgress = false
             
           }),
           catchError(error => {
@@ -117,7 +121,7 @@ export class SecretariaAccoesComponent implements OnInit {
 
   matricular() {
  
-   
+    this.mostrarProgress = true
     if (this.selectedTurma != 0 && this.bi !=null && this.nome != null  ) {
        
 
@@ -145,6 +149,7 @@ export class SecretariaAccoesComponent implements OnInit {
             this.mostrar2 = false
             this.mostrar1 = true
             this.sucesso = true
+            this.mostrarProgress = false
             
           }),
           catchError(error => {

@@ -36,6 +36,7 @@ export class TesourariaAccoesComponent implements OnInit{
   relatorio : any
   mesesSelecionados : string[]=[]  
   mensagem = false
+  mostrarProgress = false
 
   constructor(private fb: FormBuilder,private tesouraria : TesourariaService) { }
 
@@ -50,17 +51,19 @@ export class TesourariaAccoesComponent implements OnInit{
     this.exibirM2 = false
     this.mostrarGeral = true
     this.mensagem = false
+    this.mostrarProgress = false
   }
   
 
   pesquisar() {
-
+    
+    this.mostrarProgress = true
     // Obtendo o valor do campo idAluno
     const idAluno = this.dadosAluno.get('idAluno')?.value;
 
     // Obtendo o valor do campo idTurma
     const idTurma = this.dadosAluno.get('idTurma')?.value;
-
+    
     if (this.dadosAluno.valid) {
       console.log('Dados do aluno:', this.dadosAluno.value);
       this.tesouraria.getAluno(idTurma,idAluno)
@@ -83,7 +86,7 @@ export class TesourariaAccoesComponent implements OnInit{
                 this.exibirM1 = true
                 this.exibirM2 = false
               }
-              
+              this.mostrarProgress = false
 
           }),
           catchError(error => {
@@ -100,7 +103,7 @@ export class TesourariaAccoesComponent implements OnInit{
 
   pagarPropina() {
 
-      
+    this.mostrarProgress = true
       // Obtendo o valor do campo idTurma
       const idTurma = this.dadosAluno.get('idTurma')?.value;
       this.mesesAPagar =  this.mesesAPagar3(this.mesesPropina)
@@ -128,7 +131,7 @@ export class TesourariaAccoesComponent implements OnInit{
                   this.relatorio = response.relatorio
                   this.mostrarGeral = true
                   this.mensagem = true
-                  
+                  this.mostrarProgress = false
                   
                 
   

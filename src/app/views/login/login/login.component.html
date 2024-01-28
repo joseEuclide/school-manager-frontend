@@ -14,7 +14,13 @@
 </head>
 <body>
   <div class="container">
-    <div class="container">
+    
+     <div *ngIf="mostrarProgress" class="text-center" style="margin: 20%;">
+        <div class="spinner-border spinner-border-lg" style="border-width: 5px;" [style.border-color]="spinnerBorderColor" role="status">
+          <span class="sr-only" style="color: rgb(28, 9, 199);">Loading...</span>
+        </div>
+    </div>
+    <div *ngIf="!mostrarProgress" class="container">
         <div class="form-container">
           <div class="form-group mb-2">
              <p style="margin: 0 auto;color: crimson;">{{login2.mensagem}}</p>
@@ -34,7 +40,7 @@
         </div>
       </div>
       
-  </div>
+  </div> 
   <script src=""></script> <!-- Caminho para seu arquivo JavaScript -->
 </body>
 </html>

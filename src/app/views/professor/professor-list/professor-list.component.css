@@ -32,5 +32,25 @@ table {
 .custom-table td:hover {
     background-color: #E6E6FA; /* Cor de fundo lilás bonita no hover */
 }
+.example-h2 {
+  margin: 10px;
+}
+
+.example-section {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.example-margin {
+  margin: 0 10px;
+}
+.spinner-border {
+  width: 6rem; /* Altere este valor conforme necessário */
+  height: 6rem; /* Altere este valor conforme necessário */
+  margin-left: 1 auto;
+}
+
 
   

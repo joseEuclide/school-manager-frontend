@@ -17,6 +17,7 @@ export class PagarComponent implements OnInit{
 
   status: Boolean = false
   exibirMensagem = false
+  mostrarProgress = false
 
   constructor(private fb: FormBuilder,private adminService : AdminService) {
    
@@ -24,9 +25,11 @@ export class PagarComponent implements OnInit{
 
   ngOnInit(): void {
     this.exibirMensagem = false
+    this.mostrarProgress = false
   }
 
   pagarFuncionarios() {
+    this.mostrarProgress = true
     console.log("idProf",this.status)
 
     this.adminService.criarPagarFuncionarios(JSON.stringify(true))
@@ -35,6 +38,7 @@ export class PagarComponent implements OnInit{
         console.log('  ********************  Funcionarios Pagos Com Sucesso:', response);
         // Adicione aqui qualquer ação adicional após o cadastro.
         this.exibirMensagem = true
+        this.mostrarProgress = false
       }),
       catchError(error => {
         console.error('Erro Ao Pagar os Funcionarios:', error);

@@ -81,7 +81,7 @@ export class ProfessorComponent {
    nomes_niveis: string[] = [];
    nomes_turnos: string[] = [];
    cadastroSucesso : Boolean = false;
-
+   mostrarProgress = false
 
   constructor(public fb: FormBuilder,private adminService : AdminService) {
     this.dadosForm = this.fb.group({
@@ -126,9 +126,10 @@ export class ProfessorComponent {
       unSelectAllText: 'UnSelect All',
       allowSearchFilter: true
     };
-
+    this.mostrarProgress = true
     this.adminService.getCursos().subscribe(cursos => {
       this.cursos = cursos;
+      this.mostrarProgress = false
     });
 
     this.dropdownList_Niveis = [
@@ -199,6 +200,7 @@ export class ProfessorComponent {
 
 
   cadastrarProf1() {
+    this.mostrarProgress = true
     if (this.profForm2.valid) {
       console.log('Dados do curso a serem cadastrados:', this.profForm2.value);
       this.adminService.criarProf1(this.profForm2.value)
@@ -211,6 +213,7 @@ export class ProfessorComponent {
             this.mostrar3 = true
             this.mostrar4 = false
             this.idProf = response.id
+            this.mostrarProgress = false
           }),
           catchError(error => {
             console.error('Erro ao cadastrar o curso:', error);
@@ -229,6 +232,7 @@ export class ProfessorComponent {
   }
 
   cadastrarProf2() {
+    this.mostrarProgress = true
     console.log("niveis2",this.niveis2)
     // Criar um array com os IDs dos cursos selecionados
     const selectedCourseIds = this.selectedItems_Curso.map((curso) => curso.id);
@@ -290,6 +294,7 @@ export class ProfessorComponent {
               this.mostrarMensagem = true
               this.mostrarTurmas = false
             }
+            this.mostrarProgress = false
             
           }),
           catchError(error => {
@@ -311,7 +316,7 @@ export class ProfessorComponent {
   
 
   cadastrarProf3() {
-
+    this.mostrarProgress = true
     this.mostrarResultadoFinal()
     console.log("this.turmasSelecionadas:  ",this.turmasSelecionadas)
     
@@ -327,6 +332,7 @@ export class ProfessorComponent {
             this.mostrar3 = false
             this.mostrar4 = false
             this.cadastroSucesso = true
+            this.mostrarProgress = false
 
         
           }),

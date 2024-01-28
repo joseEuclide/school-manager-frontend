@@ -22,7 +22,11 @@
       </div>
 
       <div>
-          <div *ngIf="mostrarProgress" class="text-center" style="margin: 30%;">Mostrar Progress Bar</div>
+          <div *ngIf="mostrarProgress" class="text-center" style="margin: 20%;">
+              <div class="spinner-border spinner-border-lg text-primary" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+          </div>
           <div *ngIf="!mostrarProgress" class="col-lg-6 mb-5 mb-lg-0 position-relative">
             <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
             <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>

@@ -25,6 +25,7 @@ export class CalendarioProvaComponent  implements OnInit{
     turno: String = '';
     cursos: Curso[] = [];
     exibirMensagem = false
+    mostrarProgress = false
 
   constructor(private adminService : AdminService) {
    
@@ -35,6 +36,7 @@ export class CalendarioProvaComponent  implements OnInit{
       this.cursos = cursos;
     });
     this.exibirMensagem = false
+    this.mostrarProgress = false
   }
   // Métodos para adicionar/remover disciplinas e horários
   adicionarDisciplina() {
@@ -71,6 +73,7 @@ export class CalendarioProvaComponent  implements OnInit{
       nivel: this.nivel,
       dados: this.disciplinas
     };
+    this.mostrarProgress = true
     console.log('Dados dos Calendários:1 ', JSON.stringify(dadosCalendarios, null, 2));
     //console.log('Dados dos Calendários2: ', dadosCalendarios.cursoInfo);
     console.log('Dados dos Calendários:3 ', dadosCalendarios.dados);
@@ -81,6 +84,7 @@ export class CalendarioProvaComponent  implements OnInit{
         console.log('  ********************  Calendario de Provas Cadastrados Com Sucesso:', response);
         // Adicione aqui qualquer ação adicional após o cadastro.
         this.exibirMensagem = true
+        this.mostrarProgress = false
 
       }),
       catchError(error => {

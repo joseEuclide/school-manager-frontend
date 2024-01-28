@@ -22,6 +22,7 @@ export class TurmaComponent {
     // Adicione mais cursos conforme necessário
   ];
   exibirMensagem = false
+  mostrarProgress = false
 
   constructor(private fb: FormBuilder,private adminService : AdminService) { }
 
@@ -37,6 +38,7 @@ export class TurmaComponent {
       this.cursos = cursos;
     });
     this.exibirMensagem = false
+    this.mostrarProgress = false
   } 
 
   onSubmit() {
@@ -50,6 +52,7 @@ export class TurmaComponent {
   }
 
   cadastrarTurma() {
+      this.mostrarProgress = true
       const cursoValor = parseInt(this.turmaForm.get('curso')?.value, 10);
       console.log("cursoValor: ",cursoValor)
       console.log('Dados da turma a serem cadastrados:', this.turmaForm.value);
@@ -59,6 +62,7 @@ export class TurmaComponent {
             console.log('Turma cadastrado com sucesso:', response);
             // Adicione aqui qualquer ação adicional após o cadastro.
             this.exibirMensagem = true
+            this.mostrarProgress = false
           }),
           catchError(error => {
             console.error('Erro ao cadastrar a Turma:', error);

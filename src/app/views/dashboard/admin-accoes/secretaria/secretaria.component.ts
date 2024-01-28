@@ -14,6 +14,7 @@ export class SecretariaComponent implements OnInit {
 
   secretarioForm: FormGroup;
   exibirMensagem = false
+  mostrarProgress = false
 
   constructor(private fb: FormBuilder, private adminService : AdminService) {
     this.secretarioForm = this.fb.group({
@@ -25,6 +26,7 @@ export class SecretariaComponent implements OnInit {
   ngOnInit() {
     this.adicionarSecretario();
     this.exibirMensagem = false
+    this.mostrarProgress = false
   }
 
   get secretarios() {
@@ -53,6 +55,7 @@ export class SecretariaComponent implements OnInit {
   }
 
   cadastrarSecretarios() {
+    this.mostrarProgress = true
     // Lógica para cadastrar os secretários com nome e BI
     const secretarios = this.secretarioForm.value.secretarios;
     console.log('Dados dos Secretários:', secretarios);
@@ -63,6 +66,7 @@ export class SecretariaComponent implements OnInit {
         console.log('  ********************  Secretarios Cadastrados:', response);
         // Adicione aqui qualquer ação adicional após o cadastro.
         this.exibirMensagem = true
+        this.mostrarProgress = false
        
       }),
       catchError(error => {

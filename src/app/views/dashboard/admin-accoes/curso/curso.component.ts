@@ -14,6 +14,7 @@ export class CursoComponent implements OnInit{
 
   cursoForm2!: FormGroup;
   exibirMensagem = false
+  mostrarProgress = false
 
   constructor(private fb: FormBuilder,private adminService : AdminService) { }
 
@@ -22,10 +23,12 @@ export class CursoComponent implements OnInit{
       nome: ['', [Validators.required]],
     });
     this.exibirMensagem = false
+    this.mostrarProgress = false
   }
 
 
   cadastrarCurso() {
+    this.mostrarProgress = true
     if (this.cursoForm2.valid) {
       console.log('Dados do curso a serem cadastrados:', this.cursoForm2.value);
       this.adminService.criarCurso(this.cursoForm2.value)
@@ -34,6 +37,7 @@ export class CursoComponent implements OnInit{
             console.log('Curso cadastrado com sucesso:', response);
             // Adicione aqui qualquer ação adicional após o cadastro.
             this.exibirMensagem = true
+            this.mostrarProgress = false
           }),
           catchError(error => {
             console.error('Erro ao cadastrar o curso:', error);

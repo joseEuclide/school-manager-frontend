@@ -14,7 +14,7 @@ import { LocalStorageService } from 'src/app/shared/localstorageService/LocalSto
 })
 export class ProfessorListComponent implements OnInit{
 
-  mostrarTurmas = true
+  mostrarTurmas = false
   lancarNotas1 =  false
   verNotas1 =  false
   verNotas2 =  false
@@ -39,6 +39,7 @@ export class ProfessorListComponent implements OnInit{
   disciplinas2! : ProfessorModel[]
 
   disciplinaEscolhida!: number 
+  mostrarProgress = false
 
 
   constructor(private adminService: AdminService,
@@ -49,21 +50,26 @@ export class ProfessorListComponent implements OnInit{
 
   ngOnInit(): void {
 
+    this.mostrarProgress = true
+    this.mostrarTurmas = false
     this.idProf = this.recuperarIdProf();
       if((this.idProf !== null ) || 
          (this.idProf !== 0 )){
           const idProfNotNull = this.idProf !== null ? this.idProf : 0;
           this.idProfActual = idProfNotNull
-
+          
           console.log("=======>  this.idProfActual: ",this.idProfActual," <============")
           //converter idAlunoNotNull de String para Int
           const idProf = this.localStorage.getIntItem("id") || 0
           this.professorService.getTurmas(idProf).subscribe(turmas => {
             this.turmas = turmas;
+            this.mostrarProgress = false
+            this.mostrarTurmas = true
+            
         });
 
 
-        this.mostrarTurmas = true
+        //this.mostrarTurmas = true
         this.lancarNotas1 = false
         this.verNotas0 =  false
         this.verNotas1 = false
@@ -71,10 +77,13 @@ export class ProfessorListComponent implements OnInit{
         this.verMensagem = false
         this.verModal = false
         this.sucesso = false
+        
   }
   }
 
   lancarNotas(idTurma: number) {
+
+     this.mostrarProgress = true
     // Lógica para lançar notas da turma
       console.log('Lançar notas da turma:', idTurma);
       // Implemente a lógica real aqui
@@ -100,11 +109,13 @@ export class ProfessorListComponent implements OnInit{
           this.professorService.getDisciplinas(idProf,idTurma).subscribe(disciplinas => {
             this.disciplinas = disciplinas;
           });
-
+          this.mostrarProgress = false
 
     }
   }
   lancarNotas2() {
+
+    this.mostrarProgress = true
     // Lógica para lançar notas da turma
     console.log('this.alunos:', this.alunos);
     // Implemente a lógica real aqui
@@ -150,6 +161,7 @@ export class ProfessorListComponent implements OnInit{
             this.verNotas0 =  false
             this.verNotas1 = false
             this.verNotas2 = false
+            this.mostrarProgress = false
             
           }),
           catchError(error => {

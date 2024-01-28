@@ -25,6 +25,7 @@ export class DisciplinaComponent implements OnInit {
   disciplinas: DisciplinaModel[] = [];
   dadosCurso2 : any = null
   exibirMensagem = false
+  mostrarProgress = false
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
@@ -32,6 +33,7 @@ export class DisciplinaComponent implements OnInit {
       this.cursos2 = cursos;
     });
     this.exibirMensagem = false
+    this.mostrarProgress = false
   }
 
   adicionarDisciplina() {
@@ -73,6 +75,7 @@ export class DisciplinaComponent implements OnInit {
 
 
   private cadastrarDisciplina2() {
+    this.mostrarProgress = true
     if (this.dadosCurso2 != null && this.selectedCurso != 0) {
       console.log('Dados das disciplinas a serem cadastrados:', this.dadosCurso2);
       this.adminService.criarDiscisciplinas(this.dadosCurso2.value,this.selectedCurso)
@@ -81,6 +84,7 @@ export class DisciplinaComponent implements OnInit {
             console.log('Disciplinas cadastradas com sucesso:', response);
             // Adicione aqui qualquer ação adicional após o cadastro.
             this.exibirMensagem = true
+            this.mostrarProgress = false
           }),
           catchError(error => {
             console.error('Erro ao cadastrar o curso:', error);

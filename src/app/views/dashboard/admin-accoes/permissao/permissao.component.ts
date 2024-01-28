@@ -24,6 +24,7 @@ export class PermissaoComponent implements OnInit{
   status: Boolean = false
   mensagem = ""
   exibirMensagem = false
+  mostrarProgress = false
 
   constructor(private fb: FormBuilder,private adminService : AdminService) {
    
@@ -31,9 +32,11 @@ export class PermissaoComponent implements OnInit{
 
   ngOnInit(): void {
     this.exibirMensagem = false
+    this.mostrarProgress = false
   }
 
   criarPermissao() {
+      this.mostrarProgress = true
       // dar permissão ao(s) professor(s)
       console.log("idProf",this.idProf)
       const resultado = {
@@ -48,6 +51,7 @@ export class PermissaoComponent implements OnInit{
         // Adicione aqui qualquer ação adicional após o cadastro.
        this.mensagem = response.mensagem
        this.exibirMensagem = true
+       this.mostrarProgress = false
       }),
       catchError(error => {
         console.error('Erro Ao Cadastrar as Permissoes:', error);
