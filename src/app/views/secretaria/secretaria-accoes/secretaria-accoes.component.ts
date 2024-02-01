@@ -236,5 +236,10 @@ export class SecretariaAccoesComponent implements OnInit {
     this.relatorio2 = this.sanitizer.bypassSecurityTrustResourceUrl(relatorioBase64);
   }
 
+  // Método para obter a URL segura como uma string
+  obterUrlSeguraComoString(): string {
+    return this.relatorio2.toString();
+  }
+
 
 }
