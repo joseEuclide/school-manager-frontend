@@ -11,13 +11,13 @@
         
         <div *ngIf="mostrarProgress" class="spinner-container" style="margin-left: 40%;margin-top: 24%;">
             <div class="spinner-border spinner-border-lg text-primary" role="status">
-              <span class="sr-only">Loading...</span>
+              <span class="sr-only text-primary">Carregando...</span>
             </div>
         </div>
         <!-- Carousel Section -->
         <section id="carouselSection">
             
-            <div *ngIf="!mostrarProgress" class="row">
+            <div style="max-height: 90%; overflow-y: auto;overflow-x: auto;" *ngIf="!mostrarProgress" class="row">
             
               <div class="col-md-12">
 
@@ -59,7 +59,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="container mb-2" *ngIf="lancarNotas1">
+                <div style="max-height: 90%; overflow-y: auto;overflow-x: auto;"  class="container mb-2" *ngIf="lancarNotas1">
 
                     <!-- aluno-lista.component.html -->
                     <!-- aluno-lista.component.html -->

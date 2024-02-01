@@ -49,6 +49,8 @@ import { PrecosPropinasComponent } from './views/dashboard/admin-accoes/precos-p
 import { AdminComponent } from './views/admin/admin/admin.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+
 
 @NgModule({
   declarations: [
@@ -100,6 +102,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    NgxExtendedPdfViewerModule,
     NgFor,
     NgMultiSelectDropDownModule.forRoot()
 

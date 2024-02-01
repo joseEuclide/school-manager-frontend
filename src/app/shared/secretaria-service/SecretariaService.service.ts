@@ -48,9 +48,8 @@ export class SecretariaService {
     return this.httpClient.get<Propina>(this.apiUrl+'pagar-propina-Aluno/'+idTurma+"/"+idAluno);
   }
   public matricularAluno(idTurma: number, aluno: any): Observable<SecretariaModel> {  
-      return this.httpClient.post<SecretariaModel>(this.apiUrl+"cadastrar-aluno/"+idTurma, aluno, this.httpOptions);
+    return this.httpClient.post<SecretariaModel>(this.apiUrl+"cadastrar-aluno/"+idTurma, aluno, this.httpOptions);
   }
-
   
 
 
