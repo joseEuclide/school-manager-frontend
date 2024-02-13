@@ -50,6 +50,7 @@ import { AdminComponent } from './views/admin/admin/admin.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
 
 
 @NgModule({
@@ -88,6 +89,7 @@ import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
     VerNotasDialogComponent,
     PrecosPropinasComponent,
     AdminComponent,
+    ExamplePdfViewerComponent,
   ],
   imports: [
     BrowserModule,

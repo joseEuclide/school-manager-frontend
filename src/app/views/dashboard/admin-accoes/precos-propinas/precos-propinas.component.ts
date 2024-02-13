@@ -22,6 +22,7 @@ export class PrecosPropinasComponent implements OnInit{
   mostrar = false
   exibirMensagem = false
   mostrarProgress = false
+  mensagem! : string
 
   constructor(private fb: FormBuilder,
     private adminService : AdminService,
@@ -51,6 +52,12 @@ export class PrecosPropinasComponent implements OnInit{
         this.precoService.savePrecos(precosLancados)
         .pipe(
           map((response) => {
+
+            if(response != null){
+               this.mensagem = "Os Precos dos Cursos Foram Cadastrados Com Sucesso !"
+            }else{
+              this.mensagem = "Os Precos dos Cursos Não Foram Cadastrados !"
+            }
             console.log('Resultado do Lancamento de Provas: ', response);
             this.precos2 =  response
             this.mostrar = true

@@ -82,13 +82,13 @@ export class AdminService {
     return this.httpClient.post<any>(this.apiUrl+'cadastrar-salarios', pagar, this.httpOptions);
   }
 
-  public criarCalendarioProvas(calendariosProvas: any): Observable<any> {
+  public criarCalendarioProvas(calendariosProvas: any): Observable<AdminModel> {
     console.log("calendariosProvas:  ",calendariosProvas)
-    return this.httpClient.post<any>(this.apiUrl+'cadastrar-Calendario-Provas', calendariosProvas, this.httpOptions);
+    return this.httpClient.post<AdminModel>(this.apiUrl+'cadastrar-Calendario-Provas', calendariosProvas, this.httpOptions);
   }
   public criarCalendarioAulas(calendariosAulas: any): Observable<any> {
     console.log("calendariosAulas:  ",calendariosAulas)
-    return this.httpClient.post<any>(this.apiUrl+'cadastrar-Calendario-Provas', calendariosAulas, this.httpOptions);
+    return this.httpClient.post<any>(this.apiUrl+'cadastrar-Calendario-Aulas', calendariosAulas, this.httpOptions);
   }
 
   public criarAdmin(admin: any): Observable<AdminModel> {

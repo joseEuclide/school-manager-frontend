@@ -13,5 +13,8 @@ export interface Propina {
   mensagem : string
   mensagem2 : string
   relatorio : any
+  multa : string
+  propina : string
+  
   // Adicione mais propriedades conforme necessário
 }

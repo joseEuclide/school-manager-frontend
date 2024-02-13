@@ -37,6 +37,7 @@ export class TesourariaAccoesComponent implements OnInit{
   mesesSelecionados : string[]=[]  
   mensagem = false
   mostrarProgress = false
+  
 
   constructor(private fb: FormBuilder,private tesouraria : TesourariaService) { }
 

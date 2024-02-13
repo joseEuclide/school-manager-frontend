@@ -42,11 +42,18 @@ export class SecretariaAccoesComponent implements OnInit {
   mensagem = ""
   mostrarProgress = false
   relatorioArrayBuffer: ArrayBuffer | undefined;
-  relatorio2!: SafeResourceUrl;
+  relatorio3! : ArrayBuffer
+  relatorio2!: string | SafeResourceUrl
+  relatorioUrl!: SafeResourceUrl;
+  relatorio4! : string
+  directorioPdf! : string //="../assets/pdfs/matricula.pdf"
+  relatorioDataUrl! :  ArrayBuffer 
+  
+
 
   constructor(private adminService: AdminService,
               private secretariaService: SecretariaService,
-              private sanitizer: DomSanitizer) { }
+              public sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.adminService.getCursos().subscribe(cursos => {
@@ -142,7 +149,6 @@ export class SecretariaAccoesComponent implements OnInit {
         .pipe(
           map((response) => {
             console.log('Resultado da Matricula:', response);
-            console.log('Relatorio String:', response.novoRelatorio);
             // Adicione aqui qualquer ação adicional após o cadastro.
             
             this.mostrarTurmas = false
@@ -154,15 +160,13 @@ export class SecretariaAccoesComponent implements OnInit {
             this.sucesso = true
             this.mostrarProgress = false
             this.relatorio = response
+            this.relatorio = response.novoRelatorio
+            this.relatorio3 = this.convertToBuffer(response.novoRelatorio);
+            this.relatorio4 = response.relatorio
+            this.directorioPdf = "../assets/pdfs/matricula.pdf"
             this.configurarRelatorio(response.relatorio);
-            // relatorio em bytes
-            //const relatorio = this.relatorio.relatorio
-            //const base64Pdf = "data:application/pdf;base64,"+ Base64.encodeBase64String(pdfByte);
-            //this.relatorioArrayBuffer = response
-            //this.getPdfUrl()
+            this.sectarRelatorioDataUrl(response.novoRelatorio)
             
-            // Manipule o relatório recebido, por exemplo, exibindo em um visor PDF
-             //this.exibirRelatorio(response.relatorio);
             
           }),
           catchError(error => {
@@ -233,13 +237,46 @@ export class SecretariaAccoesComponent implements OnInit {
 
    // Método para configurar a URL do relatório com o DomSanitizer
    configurarRelatorio(relatorioBase64: string) {
+    console.log("relatorioBase64: ",relatorioBase64)
     this.relatorio2 = this.sanitizer.bypassSecurityTrustResourceUrl(relatorioBase64);
-  }
-
-  // Método para obter a URL segura como uma string
-  obterUrlSeguraComoString(): string {
-    return this.relatorio2.toString();
+    
+  
   }
 
 
+   // Método para obter a URL segura como uma string
+   obterUrlSeguraComoString(): string {
+    return this.relatorio2 ? this.relatorio2.toString() : '';
+  }
+
+  convertToBuffer(data: any): ArrayBuffer {
+    // Implemente a lógica de conversão aqui
+    // Exemplo: Se data é um array de bytes, você pode usar o TypedArray para converter
+       const binaryData = window.atob(data);
+      const arrayBuffer = new ArrayBuffer(binaryData.length);
+      const uint8Array = new Uint8Array(arrayBuffer);
+      for (let i = 0; i < binaryData.length; i++) {
+        uint8Array[i] = binaryData.charCodeAt(i);
+      }
+      // Cria um Blob com o conteúdo binário
+      const blob = new Blob([uint8Array], { type: 'application/pdf' });
+      // Cria uma URL do Blob
+      const url = URL.createObjectURL(blob);
+      // Sanitiza a URL para evitar problemas de segurança
+      this.relatorioUrl = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+   
+    return new Uint8Array(data).buffer;
+  }
+
+  sectarRelatorioDataUrl(relatorio: any){
+
+    const blob = new Blob([relatorio],{type: 'application/pdf'})
+    const reader =  new FileReader()
+    reader.readAsDataURL(blob)
+    reader.onloadend = () =>{
+      this.relatorioDataUrl =  reader.result as ArrayBuffer
+    };
+  }
+
+  
 }

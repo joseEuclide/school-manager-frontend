@@ -19,17 +19,14 @@
             
             <div style="max-height: 90%; overflow-y: auto;overflow-x: auto;" *ngIf="!mostrarProgress" class="row">
             
-              <div class="col-md-12">
+              <div style="height: 90%; overflow-y: auto;overflow-x: auto;" class="col-md-12">
 
-                <div>
-                    <div class="container">
-                        <p *ngIf="verMensagem" class="text-center" style="width:50%;margin: 0 auto;background-color: midnightblue;color:white;font-style: italic;"> {{mensagem}}</p>
-                    </div><br>
-                    <div *ngIf="verNotass" class="text-center">
-                        <button style="color: white;background-color: darkgreen;width: 30%;" (click)="exibirNotas()">Ver As Notas</button>
+                <div *ngIf="sucesso">
+                    <p  class="text-center mt-2 mb-2" style="width:50%;margin: 0 auto;background-color: midnightblue;color:white;font-style: italic;"> {{mensagem}}</p>
+                    <div class="text-center mb-2"> <!-- Adicionando a classe 'text-center' para centralizar o botão -->
+                      <button (click)="imprimirRelatorio()" type="button" class="btn btn-primary"  style="width:30%">Imprimir Relatorio</button> <!-- Adicionando a classe 'btn-lg' para aumentar o tamanho do botão -->
                     </div>
-                    
-                </div>
+                  </div>  
                 <!-- turma-lista.component.html -->
                 <div class="container mb-3" *ngIf="mostrarTurmas">
                     
@@ -59,7 +56,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div style="max-height: 90%; overflow-y: auto;overflow-x: auto;"  class="container mb-2" *ngIf="lancarNotas1">
+                <div style="height: 90%;width: 90%; overflow-y: auto;overflow-x: auto;"  class="container mb-2" *ngIf="lancarNotas1">
 
                     <!-- aluno-lista.component.html -->
                     <!-- aluno-lista.component.html -->
@@ -162,6 +159,22 @@
                     </div>
                     
                 </div>
+                <div *ngIf="mostrar3" class="card text-center mb-4" style="max-width: 100%; height: 80vh; overflow-y: auto; overflow-x: auto;">
+                          
+                    <div class="card-header mb-2" style="background-color: #007bff; color: white; border-radius: 10px 10px 0 0;">
+                      Relatórios
+                    </div>
+                    <div class="card-body mt-2 mb-4" >
+                      <h5 class="card-title text-center" style="color: cornflowerblue;font-style: italic;">Relatório de Matrícula</h5>
+                      <button type="button" class="btn btn-danger" (click)="fecharRelatorio()">Regressar</button><br>
+                      <ngx-extended-pdf-viewer class="mb-2" [src]="directorioPdf">
+                      </ngx-extended-pdf-viewer>
+
+                    </div>
+                    <div class="card-footer text-muted mt-5" style="background-color: #007bff; color: white; border-radius: 0 0 10px 10px;">
+                      Sistema de Gestão Escolar
+                    </div>
+                  </div>
   
             </div>
           </div>

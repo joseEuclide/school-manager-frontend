@@ -15,6 +15,7 @@ export class CursoComponent implements OnInit{
   cursoForm2!: FormGroup;
   exibirMensagem = false
   mostrarProgress = false
+  mensagem! : string
 
   constructor(private fb: FormBuilder,private adminService : AdminService) { }
 
@@ -34,10 +35,19 @@ export class CursoComponent implements OnInit{
       this.adminService.criarCurso(this.cursoForm2.value)
         .pipe(
           map((response) => {
-            console.log('Curso cadastrado com sucesso:', response);
+
+            if(response != null){
+              this.mensagem = "Curso cadastrado com sucesso"
+              console.log('Curso cadastrado com sucesso:', response);
+            }else{
+              this.mensagem = "Ja Existe Um Curso Com Esse Nome Cadastrado"
+              console.log('Ja Existe Um Curso Com Esse Nome Cadastrado:', response);
+            }
+            
             // Adicione aqui qualquer ação adicional após o cadastro.
             this.exibirMensagem = true
             this.mostrarProgress = false
+
           }),
           catchError(error => {
             console.error('Erro ao cadastrar o curso:', error);

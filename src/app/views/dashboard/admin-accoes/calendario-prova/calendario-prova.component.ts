@@ -26,6 +26,7 @@ export class CalendarioProvaComponent  implements OnInit{
     cursos: Curso[] = [];
     exibirMensagem = false
     mostrarProgress = false
+    mensagem! : string
 
   constructor(private adminService : AdminService) {
    
@@ -85,6 +86,7 @@ export class CalendarioProvaComponent  implements OnInit{
         // Adicione aqui qualquer ação adicional após o cadastro.
         this.exibirMensagem = true
         this.mostrarProgress = false
+        this.mensagem = response.mensagem
 
       }),
       catchError(error => {

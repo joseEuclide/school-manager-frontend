@@ -40,6 +40,8 @@ export class ProfessorListComponent implements OnInit{
 
   disciplinaEscolhida!: number 
   mostrarProgress = false
+  mostrar3 = false
+  directorioPdf! : string
 
 
   constructor(private adminService: AdminService,
@@ -77,6 +79,7 @@ export class ProfessorListComponent implements OnInit{
         this.verMensagem = false
         this.verModal = false
         this.sucesso = false
+        this.mostrar3 = false 
         
   }
   }
@@ -94,6 +97,7 @@ export class ProfessorListComponent implements OnInit{
       this.verNotas2 = false
       this.verMensagem = false
       this.verModal = false
+      this.mostrar3 = false
       this.idTurmaActual = idTurma
 
       this.idProf = this.recuperarIdProf();  
@@ -153,8 +157,9 @@ export class ProfessorListComponent implements OnInit{
               this.mensagem = response.mensagem
               this.verMensagem = true
               this.sucesso = true
+              this.directorioPdf = response.relatorio
 
-
+            
             this.mostrarTurmas = true
             this.verModal = false
             this.lancarNotas1 = false
@@ -162,6 +167,7 @@ export class ProfessorListComponent implements OnInit{
             this.verNotas1 = false
             this.verNotas2 = false
             this.mostrarProgress = false
+            this.mostrar3 = false
             
           }),
           catchError(error => {
@@ -272,6 +278,34 @@ export class ProfessorListComponent implements OnInit{
      console.log("ExTRURA DE REPETICAO: ")
      console.log("Resultado: ",numero2)
      return numero2
+  }
+
+  imprimirRelatorio(): void {
+    this.mostrarProgress = false
+    this.mostrarTurmas = false
+    this.lancarNotas1 = false
+    this.verNotas0 = false
+    this.verNotas1 = false
+    this.verNotas2 = false
+    this.verModal = false
+
+    this.sucesso = false
+    this.mostrar3 = true
+
+  }
+
+  fecharRelatorio(): void {
+    this.mostrarProgress = false
+    this.sucesso = false
+    this.mostrarTurmas = true
+    this.lancarNotas1 = false
+    this.verNotas0 = false
+    this.verNotas1 = false
+    this.verNotas2 = false
+    this.verModal = false
+    this.mostrar3 = false
+
+
   }
 
  
